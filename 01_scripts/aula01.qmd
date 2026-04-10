@@ -1,0 +1,72 @@
+---
+title: "01_codigo_aula1"
+format: html
+editor: visual
+---
+
+## Aula 1
+
+Este material foi desenvolvido pelo Prof. Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.
+
+A primeira ferramenta de análise de dados que vamos aprender é a linguagem de programação R.
+
+R também é uma linguagem de programação, assim como Python, que vocês estão aprendendo na disciplina de algoritmos.
+
+Este documento tem algumas seções:
+
+1.  A interface do RStudio (ou Posit Cloud);
+
+2.  Fazendo operações básicas;
+
+3.  Carregando os dados e realizando os primeiros tratamentos;
+
+4.  Realizando análises descritivas.
+
+## 1. A interface do RStudio/Posit Cloud
+
+Professor, o que estes dois programas têm em comum?
+
+-   *Comum*: os dois programas são apropriados para o uso do R;
+
+E o que eles têm de diferente?
+
+-   *Diferente*: o RStudio é a versão que você usa instalada no seu próprio computador e o Posit Cloud você usa no navegador.
+
+Você consegue acessar o Posit Cloud por meio deste [link](https://posit.cloud/). Basta fazer o login usando uma conta do google ou criar sua conta pelo email que quiser.
+
+A carinha do Posit Cloud é esta.
+
+![](images/clipboard-701879640.png)
+
+Por enquanto, não vou explicar o que significa cada campo e botão.
+
+Sabe jogo de tabuleiro? Você lê as regras e não entende de primeira. Só depois de algumas rodadas do jogo que você realmente entende de fato como funciona. Aqui é igual.
+
+Por hora, só quero que você faça uma coisas:
+
+1\) Clique em *"R Script"* conforme o print;
+
+![](images/clipboard-1961436588.png)
+
+2\) O script será aberto conforme destacado de vermelho. Digite alguma operação como esta e aperte **ctrl + enter** e veja que o R vai executar a operação soltando um resultado (output) lá embaixo.
+
+![](images/clipboard-3136433121.png)
+
+> Já devem ter visto na disciplina de algoritmos, mas reforço aqui: pensem que um computador sempre vai fazer três coisas - receber uma entrada de dados, um processamento e uma saída. Neste pequeno trecho de código temos uma entrada `1 + 2`, um processamento (a operação sendo executada) e uma saída lá embaixo (o resultado da operação).
+
+## 2. Fazendo operações básicas
+
+Antes de iniciar a parte de
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
