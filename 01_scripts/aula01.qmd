@@ -1,6 +1,8 @@
 ---
 title: "01_codigo_aula1"
-format: html
+format: 
+  html:
+    toc: true
 editor: visual
 ---
 
@@ -9,6 +11,8 @@ editor: visual
 Este material foi desenvolvido pelo Prof. Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.
 
 A primeira ferramenta de análise de dados que vamos aprender é a linguagem de programação R.
+
+![](images/clipboard-1288050259.png){fig-align="center" width="325"}
 
 R também é uma linguagem de programação, assim como Python, que vocês estão aprendendo na disciplina de algoritmos.
 
@@ -42,6 +46,8 @@ Por enquanto, não vou explicar o que significa cada campo e botão.
 
 Sabe jogo de tabuleiro? Você lê as regras e não entende de primeira. Só depois de algumas rodadas do jogo que você realmente entende de fato como funciona. Aqui é igual.
 
+![Esse jogo é muito bom! Chama Catan](images/clipboard-3315748374.png){fig-align="center" width="561"}
+
 Por hora, só quero que você faça uma coisas:
 
 1\) Clique em *"R Script"* conforme o print;
@@ -56,17 +62,116 @@ Por hora, só quero que você faça uma coisas:
 
 ## 2. Fazendo operações básicas
 
-Antes de iniciar a parte de
+Antes de iniciar a análise de dados, vamos fazer algumas operações básicas.
+
+## 2.1. Operações matemáticas
+
+Como qualquer linguagem de programação, o R é uma calculadora.
+
+Teste rodar algumas operações básicas e veja os resultados.
+
+Lembre-se: coloque a operação e com o cursos em cima da linha e aperte **ctrl + enter** para rodar.
 
 ```{r}
-1 + 1
+
+1 + 6
+
+5 * 2
+
+8 - 15
+
+16/2
+
+5**2 
+
+sqrt(36)
+
 ```
 
-You can add options to executable code like this
+`sqrt` vem de *square root*, raiz quadrada em inglês.
+
+A ordem de execução é semelhante da matemática! Multiplicação e divisão sempre virão antes. Porém, se você quiser definir outra ordem de execução, use parênteses. Veja abaixo.
 
 ```{r}
-#| echo: false
-2 * 2
+
+5 + 6 * 6
+
+(5 + 6) * 6
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Note que na primeira operação teremos a multiplicação sendo executada primeiro, o que resulta 41. Já na segunda operação temos a soma entre parênteses sendo executada antes, o que resulta em 66.
+
+> Observação! Sempre que tiver um \# no código, o R entende que temos um comentário e, portanto, ele não executa a linha, ou seja, ele pula a linha. Fazer comentários ao longo do código é uma boa prática para que outras pessoas entendam o que você está fazendo.
+
+Exercício: suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, calcule a média.
+
+| ID aluno | Nota |
+|:--------:|:----:|
+|    1     | 6,5  |
+|    2     |  8   |
+|    3     | 9,2  |
+|    4     | 4,6  |
+|    5     | 7,6  |
+
+Vamos calcular a média. **Atenção!** Você tem que usar **ponto (e [não]{.underline} vírgula)** para separar as casas decimais!
+
+```{r}
+
+(6.5 + 8 + 9.2 + 4.6 + 7.6)/5
+
+```
+
+**Exercício**
+
+Faça um exercício semelhante para calcular a média de outro conjunto de notas.
+
+| ID aluno | Nota |
+|:--------:|:----:|
+|    6     |  7   |
+|    7     | 9,7  |
+|    8     | 4,2  |
+|    9     | 6,6  |
+|    10    | 7,2  |
+
+Faça o cálculo!
+
+## 2.2. Atribuições de variáveis
+
+Assim como no python, você pode atribuir valores a uma variável. A atribuição é útil para reaproveitar valores em operações.
+
+Vamos fazer uma clássica operação: calcular o índice de massa corpórea.
+
+```{r}
+
+peso = 94
+altura = 1.78
+
+peso/(altura**2)
+
+```
+
+Eu posso inclusive guardar o resultado em uma nova variável.
+
+```{r}
+
+imcDaniel = peso/(altura**2)
+
+```
+
+> **Observação!** Ao criar nome de variáveis é importante se atentar a algumas regras!
+>
+> -   **Não** coloque palavras separadas (ex.: `imc Daniel`);
+>
+> -   **Não** coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de `pesoConceição`, utilize `pesoConceicao`)
+
+Pronto!
+
+![](https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3EwbmJlbGRrZXFoa2Z2c3d2aXplMTQzeWJkdXZoNGpxZzA2MDV3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fUQ4rhUZJYiQsas6WD/giphy.gif)
+
+**Agora a parte legal começa!**
+
+![](images/clipboard-3854683481.png){fig-align="center" width="367"}
+
+## Carregando os dados e realizando os primeiros tratamentos
+
+Nós vamos fazer o carregamento

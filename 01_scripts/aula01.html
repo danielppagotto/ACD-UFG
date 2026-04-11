@@ -73,10 +73,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aula-1" id="toc-aula-1" class="nav-link active" data-scroll-target="#aula-1">Aula 1</a></li>
+  <li><a href="#a-interface-do-rstudioposit-cloud" id="toc-a-interface-do-rstudioposit-cloud" class="nav-link" data-scroll-target="#a-interface-do-rstudioposit-cloud">1. A interface do RStudio/Posit Cloud</a></li>
+  <li><a href="#fazendo-operações-básicas" id="toc-fazendo-operações-básicas" class="nav-link" data-scroll-target="#fazendo-operações-básicas">2. Fazendo operações básicas</a></li>
+  <li><a href="#operações-matemáticas" id="toc-operações-matemáticas" class="nav-link" data-scroll-target="#operações-matemáticas">2.1. Operações matemáticas</a></li>
+  <li><a href="#atribuições-de-variáveis" id="toc-atribuições-de-variáveis" class="nav-link" data-scroll-target="#atribuições-de-variáveis">2.2. Atribuições de variáveis</a></li>
+  <li><a href="#carregando-os-dados-e-realizando-os-primeiros-tratamentos" id="toc-carregando-os-dados-e-realizando-os-primeiros-tratamentos" class="nav-link" data-scroll-target="#carregando-os-dados-e-realizando-os-primeiros-tratamentos">Carregando os dados e realizando os primeiros tratamentos</a></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -102,6 +115,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="aula-1">Aula 1</h2>
 <p>Este material foi desenvolvido pelo Prof.&nbsp;Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.</p>
 <p>A primeira ferramenta de análise de dados que vamos aprender é a linguagem de programação R.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-1288050259.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="325"></p>
+</figure>
+</div>
 <p>R também é uma linguagem de programação, assim como Python, que vocês estão aprendendo na disciplina de algoritmos.</p>
 <p>Este documento tem algumas seções:</p>
 <ol type="1">
@@ -121,10 +139,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><em>Diferente</em>: o RStudio é a versão que você usa instalada no seu próprio computador e o Posit Cloud você usa no navegador.</li>
 </ul>
+<p>Você consegue acessar o Posit Cloud por meio deste <a href="https://posit.cloud/">link</a>. Basta fazer o login usando uma conta do google ou criar sua conta pelo email que quiser.</p>
 <p>A carinha do Posit Cloud é esta.</p>
 <p><img src="images/clipboard-701879640.png" class="img-fluid"></p>
 <p>Por enquanto, não vou explicar o que significa cada campo e botão.</p>
 <p>Sabe jogo de tabuleiro? Você lê as regras e não entende de primeira. Só depois de algumas rodadas do jogo que você realmente entende de fato como funciona. Aqui é igual.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3315748374.png" class="img-fluid figure-img" width="561"></p>
+<figcaption>Esse jogo é muito bom! Chama Catan</figcaption>
+</figure>
+</div>
 <p>Por hora, só quero que você faça uma coisas:</p>
 <p>1) Clique em <em>“R Script”</em> conforme o print;</p>
 <p><img src="images/clipboard-1961436588.png" class="img-fluid"></p>
@@ -134,22 +159,165 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Já devem ter visto na disciplina de algoritmos, mas reforço aqui: pensem que um computador sempre vai fazer três coisas - receber uma entrada de dados, um processamento e uma saída. Neste pequeno trecho de código temos uma entrada <code>1 + 2</code>, um processamento (a operação sendo executada) e uma saída lá embaixo (o resultado da operação).</p>
 </blockquote>
 </section>
-<section id="a-interface-do-rstudioposit-cloud-1" class="level2">
-<h2 class="anchored" data-anchor-id="a-interface-do-rstudioposit-cloud-1">2. A interface do RStudio/Posit Cloud</h2>
-<p>Antes de iniciar a parte de</p>
+<section id="fazendo-operações-básicas" class="level2">
+<h2 class="anchored" data-anchor-id="fazendo-operações-básicas">2. Fazendo operações básicas</h2>
+<p>Antes de iniciar a análise de dados, vamos fazer algumas operações básicas.</p>
+</section>
+<section id="operações-matemáticas" class="level2">
+<h2 class="anchored" data-anchor-id="operações-matemáticas">2.1. Operações matemáticas</h2>
+<p>Como qualquer linguagem de programação, o R é uma calculadora.</p>
+<p>Teste rodar algumas operações básicas e veja os resultados.</p>
+<p>Lembre-se: coloque a operação e com o cursos em cima da linha e aperte <strong>ctrl + enter</strong> para rodar.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">8</span> <span class="sc">-</span> <span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -7</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">16</span><span class="sc">/</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span><span class="sc">**</span><span class="dv">2</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">36</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
 </div>
 </div>
-<p>You can add options to executable code like this</p>
+<p><code>sqrt</code> vem de <em>square root</em>, raiz quadrada em inglês.</p>
+<p>A ordem de execução é semelhante da matemática! Multiplicação e divisão sempre virão antes. Porém, se você quiser definir outra ordem de execução, use parênteses. Veja abaixo.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span> <span class="sc">*</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 4</code></pre>
+<pre><code>[1] 41</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">6</span>) <span class="sc">*</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 66</code></pre>
 </div>
 </div>
-<p>The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+<p>Note que na primeira operação teremos a multiplicação sendo executada primeiro, o que resulta 41. Já na segunda operação temos a soma entre parênteses sendo executada antes, o que resulta em 66.</p>
+<blockquote class="blockquote">
+<p>Observação! Sempre que tiver um # no código, o R entende que temos um comentário e, portanto, ele não executa a linha, ou seja, ele pula a linha. Fazer comentários ao longo do código é uma boa prática para que outras pessoas entendam o que você está fazendo.</p>
+</blockquote>
+<p>Exercício: suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, calcule a média.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">ID aluno</th>
+<th style="text-align: center;">Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">6,5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">9,2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4,6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">7,6</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos calcular a média. <strong>Atenção!</strong> Você tem que usar <strong>ponto (e <u>não</u> vírgula)</strong> para separar as casas decimais!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>(<span class="fl">6.5</span> <span class="sc">+</span> <span class="dv">8</span> <span class="sc">+</span> <span class="fl">9.2</span> <span class="sc">+</span> <span class="fl">4.6</span> <span class="sc">+</span> <span class="fl">7.6</span>)<span class="sc">/</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7.18</code></pre>
+</div>
+</div>
+<p><strong>Exercício</strong></p>
+<p>Faça um exercício semelhante para calcular a média de outro conjunto de notas.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">ID aluno</th>
+<th style="text-align: center;">Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">9,7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">4,2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">6,6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7,2</td>
+</tr>
+</tbody>
+</table>
+<p>Faça o cálculo!</p>
+</section>
+<section id="atribuições-de-variáveis" class="level2">
+<h2 class="anchored" data-anchor-id="atribuições-de-variáveis">2.2. Atribuições de variáveis</h2>
+<p>Assim como no python, você pode atribuir valores a uma variável. A atribuição é útil para reaproveitar valores em operações.</p>
+<p>Vamos fazer uma clássica operação: calcular o índice de massa corpórea.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">=</span> <span class="dv">94</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>altura <span class="ot">=</span> <span class="fl">1.78</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>peso<span class="sc">/</span>(altura<span class="sc">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 29.66797</code></pre>
+</div>
+</div>
+<p>Eu posso inclusive guardar o resultado em uma nova variável.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>imcDaniel <span class="ot">=</span> peso<span class="sc">/</span>(altura<span class="sc">**</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Observação!</strong> Ao criar nome de variáveis é importante se atentar a algumas regras!</p>
+<ul>
+<li><p><strong>Não</strong> coloque palavras separadas (ex.: <code>imc Daniel</code>);</p></li>
+<li><p><strong>Não</strong> coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de <code>pesoConceição</code>, utilize <code>pesoConceicao</code>)</p></li>
+</ul>
+</blockquote>
+<p>Pronto!</p>
+<p><img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3EwbmJlbGRrZXFoa2Z2c3d2aXplMTQzeWJkdXZoNGpxZzA2MDV3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fUQ4rhUZJYiQsas6WD/giphy.gif" class="img-fluid"></p>
+<p><strong>Agora a parte legal começa!</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-3854683481.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="367"></p>
+</figure>
+</div>
+</section>
+<section id="carregando-os-dados-e-realizando-os-primeiros-tratamentos" class="level2">
+<h2 class="anchored" data-anchor-id="carregando-os-dados-e-realizando-os-primeiros-tratamentos">Carregando os dados e realizando os primeiros tratamentos</h2>
+<p>Nós vamos fazer o carregamento</p>
 </section>
 
 </main>
