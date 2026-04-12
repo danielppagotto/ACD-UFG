@@ -199,9 +199,9 @@ library(ggplot2)
 library(dplyr)
 library(gt)
 
-df <- gapminder::gapminder
+df = gapminder::gapminder
 
-df87 <- df |> dplyr::filter(year == 1987)
+df87 = df |> dplyr::filter(year == 1987)
 
 boxplot(df87$lifeExp)
 
@@ -214,7 +214,7 @@ Mas eu posso fazer gráficos muito mais bonitos e customizados se eu usar pacote
 #| message: false
 #| warning: false
 
-df87 <- df |> dplyr::filter(year == 1987)
+df87 = df |> dplyr::filter(year == 1987)
 
 df87 |> 
   rename(Continente = continent) |> 
@@ -346,7 +346,7 @@ Mas e seu eu tiver centenas, milhares ou milhões e registros? É humanamente im
 ```{r}
 #| include: false
 library(skimr)
-dados_2002 <- dados |> filter(year == 2002)
+dados_2002 = dados |> filter(year == 2002)
 
 ```
 
@@ -694,7 +694,7 @@ Armazene o resultado desta operação em um novo objeto chamado `dados_pop`. Par
 
 ```{r}
 
-status_pop <- 
+status_pop = 
   dados |> 
   filter(year == 2002) |> 
   mutate(status_pop =
@@ -711,3 +711,42 @@ status_pop <-
 status_pop
 
 ```
+
+## 6. Lista final
+
+Vamos ler um conjunto de dados para fins de exercício agora. O conjunto de dados está armazenado em um objeto chamado `cnes`.
+
+```{r}
+#| echo: true
+#| message: false
+#| warning: false
+
+cnes = vroom::vroom("https://raw.githubusercontent.com/danielppagotto/ACD-UFG/refs/heads/main/02_dados/cnes_pf.csv")
+
+```
+
+a\) Inspecione a novo conjunto de dados. Quantas linhas e colunas temos?
+
+b\) Selecione apenas as colunas `municipio`, `categoria` e `numero_prof_padronizado` e armazene em um novo objeto chamado `dados_resumido`. Depois, inspecione o resultado com `glimpse()`.
+
+c\) Renomeie a variável `numero_prof_padronizado` para `num_profissionais`. Sobrescreva o objeto, armazendo num objeto de mesmo nome.
+
+d\) Filtre a base para manter apenas os registros do município de **Luziânia** e armazene em um novo objeto. Quantas linhas esse novo objeto possui?
+
+e\) Filtre a base para mostrar apenas os registros que atendam **simultaneamente** às seguintes condições: ano igual a 2023 e nível atenção igual à primária;
+
+f\) Filtre os dados para o ano de 2019, e nível de atenção primária e calcule as seguintes estatísticas sobre a variável `num_profissionais`: Média, Mediana, Desvio-padrão, Valor mínimo, Valor máximo.
+
+g\) Agrupe os dados por `municipio` e `categoria profissional` e calcule, para todos os anos disponíveis, a **soma total** de profissionais padronizados por município. Ordene o resultado do maior para o menor e apresente com a função `gt()`.
+
+h\) Filtre os dados para o ano de **2023** e crie uma nova variável chamada `porte`, seguindo a lógica abaixo com base em `numero_prof_padronizado`:
+
+-   Acima do 3º quartil → `"Grande"`
+
+-   Entre a mediana e o 3º quartil → `"Médio"`
+
+-   Entre o 1º quartil e a mediana → `"Pequeno"`
+
+-   Abaixo do 1º quartil → `"Muito Pequeno"`
+
+Selecione apenas as colunas `municipio`, `categoria`, `numero_prof_padronizado` e `porte` e exiba o resultado.

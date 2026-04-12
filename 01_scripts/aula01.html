@@ -103,6 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#group_by-summarise-a-dupla-poderosa" id="toc-group_by-summarise-a-dupla-poderosa" class="nav-link" data-scroll-target="#group_by-summarise-a-dupla-poderosa">5.6. <code>group_by()</code> + <code>summarise()</code> — A dupla poderosa</a></li>
   <li><a href="#a-função-rename" id="toc-a-função-rename" class="nav-link" data-scroll-target="#a-função-rename">5.7. A função <code>rename()</code></a></li>
   <li><a href="#criando-uma-nova-variável-usando-mutate" id="toc-criando-uma-nova-variável-usando-mutate" class="nav-link" data-scroll-target="#criando-uma-nova-variável-usando-mutate">5.8. Criando uma nova variável usando mutate()</a></li>
+  <li><a href="#lista-final" id="toc-lista-final" class="nav-link" data-scroll-target="#lista-final">6. Lista final</a></li>
   </ul>
 </nav>
 </div>
@@ -1048,23 +1049,23 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media_expectativa)) <span class="sc">|&gt;</span> </span>
 <span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="pbvewwgwlb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pbvewwgwlb table {
+<div id="bwhaoehhoi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bwhaoehhoi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pbvewwgwlb thead, #pbvewwgwlb tbody, #pbvewwgwlb tfoot, #pbvewwgwlb tr, #pbvewwgwlb td, #pbvewwgwlb th {
+#bwhaoehhoi thead, #bwhaoehhoi tbody, #bwhaoehhoi tfoot, #bwhaoehhoi tr, #bwhaoehhoi td, #bwhaoehhoi th {
   border-style: none;
 }
 
-#pbvewwgwlb p {
+#bwhaoehhoi p {
   margin: 0;
   padding: 0;
 }
 
-#pbvewwgwlb .gt_table {
+#bwhaoehhoi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1090,12 +1091,12 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-left-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_caption {
+#bwhaoehhoi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pbvewwgwlb .gt_title {
+#bwhaoehhoi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1107,7 +1108,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-width: 0;
 }
 
-#pbvewwgwlb .gt_subtitle {
+#bwhaoehhoi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1119,7 +1120,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-width: 0;
 }
 
-#pbvewwgwlb .gt_heading {
+#bwhaoehhoi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1131,13 +1132,13 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_bottom_border {
+#bwhaoehhoi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_col_headings {
+#bwhaoehhoi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1152,7 +1153,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_col_heading {
+#bwhaoehhoi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1172,7 +1173,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#pbvewwgwlb .gt_column_spanner_outer {
+#bwhaoehhoi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1184,15 +1185,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 4px;
 }
 
-#pbvewwgwlb .gt_column_spanner_outer:first-child {
+#bwhaoehhoi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pbvewwgwlb .gt_column_spanner_outer:last-child {
+#bwhaoehhoi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pbvewwgwlb .gt_column_spanner {
+#bwhaoehhoi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1204,11 +1205,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   width: 100%;
 }
 
-#pbvewwgwlb .gt_spanner_row {
+#bwhaoehhoi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pbvewwgwlb .gt_group_heading {
+#bwhaoehhoi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1234,7 +1235,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   text-align: left;
 }
 
-#pbvewwgwlb .gt_empty_group_heading {
+#bwhaoehhoi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1249,15 +1250,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: middle;
 }
 
-#pbvewwgwlb .gt_from_md > :first-child {
+#bwhaoehhoi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pbvewwgwlb .gt_from_md > :last-child {
+#bwhaoehhoi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pbvewwgwlb .gt_row {
+#bwhaoehhoi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1276,7 +1277,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#pbvewwgwlb .gt_stub {
+#bwhaoehhoi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1289,7 +1290,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#pbvewwgwlb .gt_stub_row_group {
+#bwhaoehhoi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1303,15 +1304,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: top;
 }
 
-#pbvewwgwlb .gt_row_group_first td {
+#bwhaoehhoi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pbvewwgwlb .gt_row_group_first th {
+#bwhaoehhoi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pbvewwgwlb .gt_summary_row {
+#bwhaoehhoi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1321,16 +1322,16 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#pbvewwgwlb .gt_first_summary_row {
+#bwhaoehhoi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_first_summary_row.thick {
+#bwhaoehhoi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pbvewwgwlb .gt_last_summary_row {
+#bwhaoehhoi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1340,7 +1341,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_grand_summary_row {
+#bwhaoehhoi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1350,7 +1351,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#pbvewwgwlb .gt_first_grand_summary_row {
+#bwhaoehhoi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1360,7 +1361,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_last_grand_summary_row_top {
+#bwhaoehhoi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1370,11 +1371,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_striped {
+#bwhaoehhoi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pbvewwgwlb .gt_table_body {
+#bwhaoehhoi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1383,7 +1384,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_footnotes {
+#bwhaoehhoi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1397,7 +1398,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_footnote {
+#bwhaoehhoi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1406,7 +1407,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#pbvewwgwlb .gt_sourcenotes {
+#bwhaoehhoi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1420,7 +1421,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#pbvewwgwlb .gt_sourcenote {
+#bwhaoehhoi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1428,72 +1429,72 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#pbvewwgwlb .gt_left {
+#bwhaoehhoi .gt_left {
   text-align: left;
 }
 
-#pbvewwgwlb .gt_center {
+#bwhaoehhoi .gt_center {
   text-align: center;
 }
 
-#pbvewwgwlb .gt_right {
+#bwhaoehhoi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pbvewwgwlb .gt_font_normal {
+#bwhaoehhoi .gt_font_normal {
   font-weight: normal;
 }
 
-#pbvewwgwlb .gt_font_bold {
+#bwhaoehhoi .gt_font_bold {
   font-weight: bold;
 }
 
-#pbvewwgwlb .gt_font_italic {
+#bwhaoehhoi .gt_font_italic {
   font-style: italic;
 }
 
-#pbvewwgwlb .gt_super {
+#bwhaoehhoi .gt_super {
   font-size: 65%;
 }
 
-#pbvewwgwlb .gt_footnote_marks {
+#bwhaoehhoi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pbvewwgwlb .gt_asterisk {
+#bwhaoehhoi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pbvewwgwlb .gt_indent_1 {
+#bwhaoehhoi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pbvewwgwlb .gt_indent_2 {
+#bwhaoehhoi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pbvewwgwlb .gt_indent_3 {
+#bwhaoehhoi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pbvewwgwlb .gt_indent_4 {
+#bwhaoehhoi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pbvewwgwlb .gt_indent_5 {
+#bwhaoehhoi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pbvewwgwlb .katex-display {
+#bwhaoehhoi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pbvewwgwlb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bwhaoehhoi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1667,7 +1668,7 @@ $ log_GDP   &lt;dbl&gt; 9.817, 9.880, 9.942, 9.984, 9.986, 10.068, 10.100, 10.07
 </ul>
 <p>Armazene o resultado desta operação em um novo objeto chamado <code>dados_pop</code>. Para fazer isso, usaremos uma estrutura condicional chamada <code>case_when()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>status_pop <span class="ot">&lt;-</span> </span>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>status_pop <span class="ot">=</span> </span>
 <span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span> </span>
 <span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status_pop =</span></span>
@@ -1699,6 +1700,28 @@ $ log_GDP   &lt;dbl&gt; 9.817, 9.880, 9.942, 9.984, 9.986, 10.068, 10.100, 10.07
 # ℹ 132 more rows</code></pre>
 </div>
 </div>
+</section>
+<section id="lista-final" class="level2">
+<h2 class="anchored" data-anchor-id="lista-final">6. Lista final</h2>
+<p>Vamos ler um conjunto de dados para fins de exercício agora. O conjunto de dados está armazenado em um objeto chamado <code>cnes</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>cnes <span class="ot">=</span> vroom<span class="sc">::</span><span class="fu">vroom</span>(<span class="st">"https://raw.githubusercontent.com/danielppagotto/ACD-UFG/refs/heads/main/02_dados/cnes_pf.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>a) Inspecione a novo conjunto de dados. Quantas linhas e colunas temos?</p>
+<p>b) Selecione apenas as colunas <code>municipio</code>, <code>categoria</code> e <code>numero_prof_padronizado</code> e armazene em um novo objeto chamado <code>dados_resumido</code>. Depois, inspecione o resultado com <code>glimpse()</code>.</p>
+<p>c) Renomeie a variável <code>numero_prof_padronizado</code> para <code>num_profissionais</code>. Sobrescreva o objeto, armazendo num objeto de mesmo nome.</p>
+<p>d) Filtre a base para manter apenas os registros do município de <strong>Luziânia</strong> e armazene em um novo objeto. Quantas linhas esse novo objeto possui?</p>
+<p>e) Filtre a base para mostrar apenas os registros que atendam <strong>simultaneamente</strong> às seguintes condições: ano igual a 2023 e nível atenção igual à primária;</p>
+<p>f) Filtre os dados para o ano de 2019, e nível de atenção primária e calcule as seguintes estatísticas sobre a variável <code>num_profissionais</code>: Média, Mediana, Desvio-padrão, Valor mínimo, Valor máximo.</p>
+<p>g) Agrupe os dados por <code>municipio</code> e <code>categoria profissional</code> e calcule, para todos os anos disponíveis, a <strong>soma total</strong> de profissionais padronizados por município. Ordene o resultado do maior para o menor e apresente com a função <code>gt()</code>.</p>
+<p>h) Filtre os dados para o ano de <strong>2023</strong> e crie uma nova variável chamada <code>porte</code>, seguindo a lógica abaixo com base em <code>numero_prof_padronizado</code>:</p>
+<ul>
+<li><p>Acima do 3º quartil → <code>"Grande"</code></p></li>
+<li><p>Entre a mediana e o 3º quartil → <code>"Médio"</code></p></li>
+<li><p>Entre o 1º quartil e a mediana → <code>"Pequeno"</code></p></li>
+<li><p>Abaixo do 1º quartil → <code>"Muito Pequeno"</code></p></li>
+</ul>
+<p>Selecione apenas as colunas <code>municipio</code>, <code>categoria</code>, <code>numero_prof_padronizado</code> e <code>porte</code> e exiba o resultado.</p>
 </section>
 
 </main>
