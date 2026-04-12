@@ -56,7 +56,7 @@ Por hora, só quero que você faça algumas coisas:
 
 ![](images/clipboard-1961436588.png)
 
-2\) O script será aberto conforme destacado de vermelho. Digite alguma operação como esta e aperte **ctrl + enter** e veja que o R vai executar a operação soltando um resultado (output) lá embaixo.
+2\) O script será aberto conforme destacado de vermelho. Digite alguma operação como esta (1 + 2) e aperte **ctrl + enter**. Veja que o R vai executar a operação apresentando um resultado (output) lá embaixo.
 
 ![](images/clipboard-3136433121.png)
 
@@ -102,12 +102,14 @@ A ordem de execução é semelhante da matemática! Multiplicação e divisão s
 
 ```{r}
 
-5 + 6 * 6
+5 + 6 * 6 # a multiplicação ocorre primeiro
 
-(5 + 6) * 6
+(5 + 6) * 6 #o 5 + 6 é executado primeiro e depois multiplicado
 ```
 
-Note que na primeira operação teremos a multiplicação sendo executada primeiro, o que resulta 41. Já na segunda operação temos a soma entre parênteses sendo executada antes, o que resulta em 66.
+Note que na primeira operação teremos a multiplicação sendo executada primeiro, o que resulta 41.
+
+Já na segunda operação temos a soma entre parênteses sendo executada antes, o que resulta em 66.
 
 Suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, calcule a média.
 
@@ -119,7 +121,9 @@ Suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, c
 |    4     | 4,6  |
 |    5     | 7,6  |
 
-Vamos calcular a média. **Atenção!** Você tem que usar **ponto (e [não]{.underline} vírgula)** para separar as casas decimais!
+Vamos calcular a média.
+
+**Atenção!** Você tem que usar **ponto (e [não]{.underline} vírgula)** para separar as casas decimais!
 
 ```{r}
 
@@ -127,7 +131,7 @@ Vamos calcular a média. **Atenção!** Você tem que usar **ponto (e [não]{.un
 
 ```
 
-> **Exercício 1:** Faça um exercício semelhante para calcular a média do conjunto de notas abaixo. Faça o cálculo e anote o resultado.
+> **Exercício 1:** Faça um exercício semelhante para calcular a média do conjunto de **notas** abaixo. Faça o cálculo e anote o resultado.
 
 | ID aluno | Nota |
 |:--------:|:----:|
@@ -163,22 +167,22 @@ imcDaniel = peso/(altura**2)
 > **Observação!** Ao criar nome de variáveis é importante se atentar a algumas regras!
 >
 > -   **Não** coloque palavras separadas (ex.: `imc Daniel`);
-> -   **Não** coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de `pesoConceição`, utilize `pesoConceicao`)
+> -   **Não** coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de `pesoConceição`, utilize `pesoConceicao`);
 > -   O R é case sensitive. Ou seja, o nome de uma variável `imcDaniel` **é diferente** de `IMCDaniel`.
 
-> **Exercício 2:** Faça o cálculo do seu IMC como exercício!
+> **Exercício 2:** Faça o cálculo do seu IMC como exercício.
 
 ## 2.3. Carregando bibliotecas
 
 Eu costumo fazer um paralelo que o R é como o Batman.
 
-O Batman sozinho possui algumas habilidades. Ele sabe artes marciais e é muito inteligente. Afinal, é o detetive dos quadrinhos.
+O Batman sozinho possui algumas habilidades? Ele sabe artes marciais e é muito inteligente. Afinal, é o detetive dos quadrinhos.
 
 Mas o Batman não tem superforça, não tem velocidade. A habilidades dele vem dos equipamentos dele, né? O Batmóvel, o cinto de utilidades...
 
 ![](images/clipboard-1412670007.png){fig-align="center" width="234"}
 
-O R por si só possui muitas funcionalidades.
+O R por si só possui algumas funcionalidades.
 
 Mas ele ganha outra dimensão de utilidade quando você instala **pacotes** nele. Por exemplo, vamos ver um pacote de visualização de dados chamado `ggplot2`.
 
@@ -203,7 +207,7 @@ boxplot(df87$lifeExp)
 
 ```
 
-Mas eu posso fazer gráficos muito mais bonitos e customizados se eu usar pacotes de visualização de dados como o pacote `ggplot2`.
+Mas eu posso fazer gráficos muito mais bonitos e customizados se eu usar pacotes de visualização de dados como o pacote `ggplot2`. Veja o gráfico abaixo.
 
 ```{r}
 #| echo: false
@@ -232,7 +236,7 @@ Tá! Mas como faz para instalar pacotes?
 
 Lá na parte de baixo, você vai escrever o comando `install.packages("ggplot2")` e apertar Enter (Lá embaixo, no campo Console, basta você apertar Enter para ele executar!).
 
-> -   👨‍🏫O que esta linha de código significa? Você está usando o comando `install.packages()` para instalar o pacote que você quer, nesse caso, o ggplot2.
+> -   O que esta linha de código significa? Você está usando o comando `install.packages()` para instalar o pacote que você quer, nesse caso, o ggplot2.
 
 ![](images/clipboard-368966110.png){fig-align="center"}
 
@@ -262,15 +266,16 @@ Fazer comentários ao longo do código é uma boa prática para que outras pesso
 
 # calcula a média de um conjunto de dados 
 
-media = mean(c(7, 2, 6, 9))
+media_teste = mean(c(7, 2, 6, 9))
 
 # calcula a correlação entre dois conjuntos de dados
 
-correlacao =  cor(c(7, 2, 6, 9),
+correlacao_teste =  cor(c(7, 2, 6, 9),
                   c(1, 4, 9, 3))
 
-media
-correlacao
+# imprime o resultado das operacoes
+media_teste
+correlacao_teste
 
 ```
 
@@ -282,7 +287,7 @@ correlacao
 
 Nós vamos trabalhar com uma base de dados chamada gapminder.
 
-Esta base foi desenvolvida por um instituto chamado [Gapminder](https://www.gapminder.org/). Em tradução livre retira do site:
+Esta base foi desenvolvida por um instituto chamado [Gapminder](https://www.gapminder.org/). Em tradução livre retirada do site:
 
 > *"A Gapminder é uma fundação sueca independente, sem vínculos políticos, religiosos ou econômicos.*
 >
@@ -296,16 +301,20 @@ dados = gapminder::gapminder
 
 ```
 
-> O que estou fazendo? Estou falando: R, acesse um conjunto de dados chamado `gapminder` que está dentro do pacote `gapmider` e guarde em um objeto que eu vou chamar de `dados`.
+> -   O que estou fazendo?
+> -   Estou falando: R, acesse um conjunto de dados chamado `gapminder` que está dentro do pacote `gapmider` ;
+> -   Guarde o conjunto de dados em um objeto que eu vou chamar de `dados`.
 
 Para dar uma primeira conferida nos dados, use a função `head()`. Ela mostra as seis primeiras linhas do conjunto de dados.
+
+Note que os primeiros registros são do país Afeganistão, que fica na Ásia. Cada 5 anos houve uma coleta: 1952, 1957, 1962...
 
 ```{r}
 
 head(dados)
 ```
 
-Você também pode usar `glimpse()` para ver um resumo da estrutura dos dados — quais colunas existem e que tipo de informação cada uma guarda.
+Você também pode usar a função `glimpse()` para ver um resumo da estrutura dos dados — quais colunas existem e que tipo de informação cada uma guarda.
 
 ```{r}
 
@@ -313,13 +322,14 @@ glimpse(dados)
 
 ```
 
-> **Interpretando as colunas**
->
-> `country` = país, `continent` = continente, `year` = ano, `lifeExp` = expectativa de vida, `pop` = população, `gdpPercap` = PIB per capita.
->
-> Note também que existem o tipo da variável ao lado do nome. Variáveis `fct` são qualitativas, variáveis `dbl` são quantitativas contínuas e variáveis `int` são quantitativas contínuas.
+> -   Temos 1704 observações (linhas) e 6 variáveis (colunas);
+> -   `country` = país, `continent` = continente, `year` = ano, `lifeExp` = expectativa de vida, `pop` = população, `gdpPercap` = PIB per capita;
+> -   Note também que existem o tipo da variável ao lado do nome.
+>     -   Variáveis do tipo `fct`: qualitativas;
+>     -   Variáveis do tipo `dbl:` quantitativas contínuas;
+>     -   Variáveis do tipo `int:` são quantitativas contínuas.
 
-**Atenção!** É muito importante inspecionar seus dados. Entender bem o que significam. Uma das fontes básicas - além do próprio conjunto de dados - é o dicionário de dados. Lembra da aula do dia 06/04 que vimos os dicionários de algumas bases?
+**Atenção!** É muito importante inspecionar seus dados e entender bem o que significam. Uma das fontes básicas - além do próprio conjunto de dados - é o dicionário de dados. Lembra da aula do dia 06/04 que vimos os dicionários de algumas bases?
 
 Uma última forma de inspecionar os dados é por meio da janela *Environment*. Clicando sobre a setinha azul, será aberto um pequeno recorte do conjunto de dados.
 
@@ -351,6 +361,8 @@ Vamos calcular as medidas resumo.
 
 Sabe aquele tanto de cálculo de média, quartil, mediana, desvio-padrão que fizemos na mão? Uma linha de código resolve tudo.
 
+Olha a saída (output) da função. Veja a última tabela. Temos a média (mean), o desvio-padrão (sd), o mínimo (p0), máximo (p100), 1º quartil (p25), mediana/2º quartil (p50), 3º quartil (p75).
+
 ```{r}
 
 skim(dados_2002)
@@ -369,6 +381,8 @@ cor(dados_2002$lifeExp,
 
 ```
 
+Professor! PIDoucas linhas de código resolvem tudo aquilo que vimos? Sim! Mas temos que sedimentar bem os conceitos e só fazendo manualmente que conseguimos alcançar um bom aprendizado.
+
 ## 5. Explorando os dados com o `dplyr`
 
 O `dplyr` é um dos pacotes mais usados em R para tratamento e manipulação de dados. Ele oferece funções simples e diretas que, combinadas, permitem fazer análises poderosas.
@@ -377,16 +391,15 @@ Pense no `dplyr` como um canivete suíço: cada ferramenta tem uma função espe
 
 As principais funções que vamos aprender são:
 
-| Função        | O que faz                                          |
-|---------------|----------------------------------------------------|
-| `select()`    | Seleciona **colunas**                              |
-| `rename()`    | Renomeia **colunas**                               |
-| `filter()`    | Filtra **linhas** por uma condição                 |
-| `arrange()`   | **Ordena** as linhas                               |
-| `group_by()`  | **Agrupa** os dados por uma categoria              |
-| `summarise()` | **Resume** os dados com estatísticas               |
-| `mutate()`    | **Cria** uma nova variável                         |
-| `left_join()` | **Junta** seu conjunto de dados com outro dataset. |
+| Função        | O que faz                             |
+|---------------|---------------------------------------|
+| `select()`    | Seleciona **colunas**                 |
+| `rename()`    | Renomeia **colunas**                  |
+| `filter()`    | Filtra **linhas** por uma condição    |
+| `arrange()`   | **Ordena** as linhas                  |
+| `group_by()`  | **Agrupa** os dados por uma categoria |
+| `summarise()` | **Resume** os dados com estatísticas  |
+| `mutate()`    | **Cria** uma nova variável            |
 
 Vamos ver cada uma delas!
 
@@ -404,7 +417,8 @@ dados |>
 > **Dica!** Você também pode usar `select()` para **remover** uma coluna colocando um `-` antes do nome dela.
 
 ```{r}
-# Removendo a coluna pop e guardando em um novo objeto chamado dados_sem_pop. Veja que agora não temos mais a variável pop
+# Removendo a coluna pop e guardando em um novo objeto chamado dados_sem_pop. 
+#Veja que agora não temos mais a variável pop
 
 dados_sem_pop = dados |> 
                   select(-pop)
@@ -412,11 +426,11 @@ dados_sem_pop = dados |>
 glimpse(dados_sem_pop)
 ```
 
-> **Exercício 3:** selecione apenas as colunas `country`, `year`, `continent` e `gdpPercap`. e armazene em um novo conjunto de dados chamado dados_2.
+> **Exercício 3:** selecione apenas as colunas `country`, `year`, `continent` e `gdpPercap` e armazene em um novo conjunto de dados chamado dados_2. Depois inspecione para saber se a variável permanece lá.
 
 ## 5.2. `filter()` — Filtrando linhas
 
-O `filter()` permite que você fique apenas com as linhas que atendem a uma condição.
+O `filter()` permite que você fique apenas com as linhas que atendem a uma condição. Sempre use dois sinais de =.
 
 ```{r}
 # Apenas os dados do Brasil
@@ -424,23 +438,35 @@ dados |>
   filter(country == "Brazil")
 ```
 
+Se você quiser pegar todos os países, com exceção daqueles que são do continente Ocenia, basta usar o operador `!=` que significa "diferente".
+
+```{r}
+
+dados |> 
+  filter(continent != "Oceania")
+
+# note que vai falar que temos 1680 linhas agora e não 1704
+```
+
 Você pode combinar condições usando `&` (E) e `|` (OU):
 
 ```{r}
 # Brasil E ano maior que 2000
 dados |> 
-  filter(country == "Brazil" & year > 2000)
+  filter(country == "Brazil" & year > 2000) # operador E
 ```
 
-> -   Ao usar o E (&) para filtrar, mantemos apenas os registros que **satisfazem a intersecção das duas condições**. Ou seja, se o país é Brasil e o ano é superior a 2000.
+Ao usar o E (&) para filtrar, mantemos apenas os registros que **satisfazem a intersecção das duas condições**. Ou seja, se o país é Brasil e o ano é superior a 2000.
 
 ```{r}
 # Países da América OU Asia
 dados |> 
-  filter(continent == "Americas" | continent == "Asia")
+  filter(continent == "Americas" | 
+         continent == "Asia") # Operador OU
 ```
 
-> -   Ao usar o OU (\|) para filtrar, mantemos os registros que satisfazem uma OU outra condição. Ou seja, o continente é Americas OU o continente é Asia.
+Ao usar o OU (\|) para filtrar, mantemos os registros que satisfazem uma OU outra condição. Ou seja, o continente é Americas OU o continente é Asia.
+
 > -   Para comparar valores de texto, use aspas (`"Brazil"`). Para números, não precisa (`year > 2002`).
 > -   Se você quiser pegar anos maiores que 2002, você terá que colocar `year > 2002`. Porém, se quiser pegar **inclusive** o ano 2002, terá que usar o operador `>=`, ou seja, `year >= 2002`.
 > -   E lembre-se: comparação de igualdade usa **dois sinais de igual** (`==`), não um só!
