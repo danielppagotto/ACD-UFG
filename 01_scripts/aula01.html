@@ -86,7 +86,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#fazendo-operações-básicas" id="toc-fazendo-operações-básicas" class="nav-link" data-scroll-target="#fazendo-operações-básicas">2. Fazendo operações básicas</a></li>
   <li><a href="#operações-matemáticas" id="toc-operações-matemáticas" class="nav-link" data-scroll-target="#operações-matemáticas">2.1. Operações matemáticas</a></li>
   <li><a href="#atribuições-de-variáveis" id="toc-atribuições-de-variáveis" class="nav-link" data-scroll-target="#atribuições-de-variáveis">2.2. Atribuições de variáveis</a></li>
-  <li><a href="#carregando-os-dados-e-realizando-os-primeiros-tratamentos" id="toc-carregando-os-dados-e-realizando-os-primeiros-tratamentos" class="nav-link" data-scroll-target="#carregando-os-dados-e-realizando-os-primeiros-tratamentos">Carregando os dados e realizando os primeiros tratamentos</a></li>
+  <li><a href="#carregando-bibliotecas" id="toc-carregando-bibliotecas" class="nav-link" data-scroll-target="#carregando-bibliotecas">2.3. Carregando bibliotecas</a>
+  <ul class="collapse">
+  <li><a href="#instalando-um-pacote" id="toc-instalando-um-pacote" class="nav-link" data-scroll-target="#instalando-um-pacote">2.3.1. Instalando um pacote</a></li>
+  <li><a href="#carregando-o-pacote" id="toc-carregando-o-pacote" class="nav-link" data-scroll-target="#carregando-o-pacote">2.3.2. Carregando o pacote</a></li>
+  </ul></li>
+  <li><a href="#comentários" id="toc-comentários" class="nav-link" data-scroll-target="#comentários">2.4. Comentários</a></li>
+  <li><a href="#carregando-os-dados-e-realizando-os-primeiros-tratamentos" id="toc-carregando-os-dados-e-realizando-os-primeiros-tratamentos" class="nav-link" data-scroll-target="#carregando-os-dados-e-realizando-os-primeiros-tratamentos">3. Carregando os dados e realizando os primeiros tratamentos</a></li>
+  <li><a href="#tudo-que-vimos-no-quadro" id="toc-tudo-que-vimos-no-quadro" class="nav-link" data-scroll-target="#tudo-que-vimos-no-quadro">4. Tudo que vimos no quadro</a></li>
+  <li><a href="#explorando-os-dados-com-o-dplyr" id="toc-explorando-os-dados-com-o-dplyr" class="nav-link" data-scroll-target="#explorando-os-dados-com-o-dplyr">5. Explorando os dados com o <code>dplyr</code></a></li>
+  <li><a href="#select-escolhendo-colunas" id="toc-select-escolhendo-colunas" class="nav-link" data-scroll-target="#select-escolhendo-colunas">5.1. <code>select()</code> — Escolhendo colunas</a></li>
+  <li><a href="#filter-filtrando-linhas" id="toc-filter-filtrando-linhas" class="nav-link" data-scroll-target="#filter-filtrando-linhas">5.2. <code>filter()</code> — Filtrando linhas</a></li>
+  <li><a href="#o-pipe-encadeando-operações" id="toc-o-pipe-encadeando-operações" class="nav-link" data-scroll-target="#o-pipe-encadeando-operações">5.3. O pipe <code>|&gt;</code> — Encadeando operações</a></li>
+  <li><a href="#arrange-ordenando-os-dados" id="toc-arrange-ordenando-os-dados" class="nav-link" data-scroll-target="#arrange-ordenando-os-dados">5.4. <code>arrange()</code> — Ordenando os dados</a></li>
+  <li><a href="#summarise-resumindo-os-dados" id="toc-summarise-resumindo-os-dados" class="nav-link" data-scroll-target="#summarise-resumindo-os-dados">5.5. <code>summarise()</code> — Resumindo os dados</a></li>
+  <li><a href="#group_by-summarise-a-dupla-poderosa" id="toc-group_by-summarise-a-dupla-poderosa" class="nav-link" data-scroll-target="#group_by-summarise-a-dupla-poderosa">5.6. <code>group_by()</code> + <code>summarise()</code> — A dupla poderosa</a></li>
+  <li><a href="#a-função-rename" id="toc-a-função-rename" class="nav-link" data-scroll-target="#a-função-rename">5.7. A função <code>rename()</code></a></li>
+  <li><a href="#criando-uma-nova-variável-usando-mutate" id="toc-criando-uma-nova-variável-usando-mutate" class="nav-link" data-scroll-target="#criando-uma-nova-variável-usando-mutate">5.8. Criando uma nova variável usando mutate()</a></li>
   </ul>
 </nav>
 </div>
@@ -117,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A primeira ferramenta de análise de dados que vamos aprender é a linguagem de programação R.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/clipboard-1288050259.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="325"></p>
+<p><img src="images/clipboard-1288050259.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="228"></p>
 </figure>
 </div>
 <p>R também é uma linguagem de programação, assim como Python, que vocês estão aprendendo na disciplina de algoritmos.</p>
@@ -126,31 +142,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>A interface do RStudio (ou Posit Cloud);</p></li>
 <li><p>Fazendo operações básicas;</p></li>
 <li><p>Carregando os dados e realizando os primeiros tratamentos;</p></li>
-<li><p>Realizando análises descritivas.</p></li>
+<li><p>Aplicação no R de tudo que vimos até agora na disciplina;</p></li>
+<li><p>Explorando os dados com o pacote de manipulação de dados <code>dplyr</code>.</p></li>
 </ol>
 </section>
 <section id="a-interface-do-rstudioposit-cloud" class="level2">
 <h2 class="anchored" data-anchor-id="a-interface-do-rstudioposit-cloud">1. A interface do RStudio/Posit Cloud</h2>
-<p>Professor, o que estes dois programas têm em comum?</p>
+<p>Professor, o que estes dois programas - RStudio e Posit Cloud - têm em comum?</p>
 <ul>
 <li><em>Comum</em>: os dois programas são apropriados para o uso do R;</li>
 </ul>
 <p>E o que eles têm de diferente?</p>
 <ul>
-<li><em>Diferente</em>: o RStudio é a versão que você usa instalada no seu próprio computador e o Posit Cloud você usa no navegador.</li>
+<li><em>Diferente</em>: o RStudio é a versão que você usa instalada no seu próprio computador e o Posit Cloud você usa no navegador (ex.: Google Chrome).</li>
 </ul>
 <p>Você consegue acessar o Posit Cloud por meio deste <a href="https://posit.cloud/">link</a>. Basta fazer o login usando uma conta do google ou criar sua conta pelo email que quiser.</p>
 <p>A carinha do Posit Cloud é esta.</p>
 <p><img src="images/clipboard-701879640.png" class="img-fluid"></p>
-<p>Por enquanto, não vou explicar o que significa cada campo e botão.</p>
+<p>Por enquanto, não vou explicar o que significa cada campo e botão da interface.</p>
 <p>Sabe jogo de tabuleiro? Você lê as regras e não entende de primeira. Só depois de algumas rodadas do jogo que você realmente entende de fato como funciona. Aqui é igual.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/clipboard-3315748374.png" class="img-fluid figure-img" width="561"></p>
+<p><img src="images/clipboard-3315748374.png" class="img-fluid figure-img" width="339"></p>
 <figcaption>Esse jogo é muito bom! Chama Catan</figcaption>
 </figure>
 </div>
-<p>Por hora, só quero que você faça uma coisas:</p>
+<p>Por hora, só quero que você faça algumas coisas:</p>
 <p>1) Clique em <em>“R Script”</em> conforme o print;</p>
 <p><img src="images/clipboard-1961436588.png" class="img-fluid"></p>
 <p>2) O script será aberto conforme destacado de vermelho. Digite alguma operação como esta e aperte <strong>ctrl + enter</strong> e veja que o R vai executar a operação soltando um resultado (output) lá embaixo.</p>
@@ -158,6 +175,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p>Já devem ter visto na disciplina de algoritmos, mas reforço aqui: pensem que um computador sempre vai fazer três coisas - receber uma entrada de dados, um processamento e uma saída. Neste pequeno trecho de código temos uma entrada <code>1 + 2</code>, um processamento (a operação sendo executada) e uma saída lá embaixo (o resultado da operação).</p>
 </blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-2881657647.webp" class="img-fluid quarto-figure quarto-figure-center figure-img" width="353"></p>
+</figure>
+</div>
+<p>É muito importante que leia atentamente o material e reproduza o código no seu computador.</p>
+<p><strong>Não copie e cole os trechos de código, DIGITE e rode os comandos. Isso é importante para o sucesso do seu aprendizado!</strong></p>
 </section>
 <section id="fazendo-operações-básicas" class="level2">
 <h2 class="anchored" data-anchor-id="fazendo-operações-básicas">2. Fazendo operações básicas</h2>
@@ -167,7 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="operações-matemáticas">2.1. Operações matemáticas</h2>
 <p>Como qualquer linguagem de programação, o R é uma calculadora.</p>
 <p>Teste rodar algumas operações básicas e veja os resultados.</p>
-<p>Lembre-se: coloque a operação e com o cursos em cima da linha e aperte <strong>ctrl + enter</strong> para rodar.</p>
+<p>Lembre-se: coloque a operação e com o cursor em cima da linha e aperte <strong>ctrl + enter</strong> para rodar.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -207,10 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Note que na primeira operação teremos a multiplicação sendo executada primeiro, o que resulta 41. Já na segunda operação temos a soma entre parênteses sendo executada antes, o que resulta em 66.</p>
-<blockquote class="blockquote">
-<p>Observação! Sempre que tiver um # no código, o R entende que temos um comentário e, portanto, ele não executa a linha, ou seja, ele pula a linha. Fazer comentários ao longo do código é uma boa prática para que outras pessoas entendam o que você está fazendo.</p>
-</blockquote>
-<p>Exercício: suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, calcule a média.</p>
+<p>Suponha que a gente tenha cinco notas da disciplina de ACD, conforme a seguir, calcule a média.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -248,8 +269,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 7.18</code></pre>
 </div>
 </div>
-<p><strong>Exercício</strong></p>
-<p>Faça um exercício semelhante para calcular a média de outro conjunto de notas.</p>
+<blockquote class="blockquote">
+<p><strong>Exercício 1:</strong> Faça um exercício semelhante para calcular a média do conjunto de notas abaixo. Faça o cálculo e anote o resultado.</p>
+</blockquote>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -280,11 +302,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-<p>Faça o cálculo!</p>
 </section>
 <section id="atribuições-de-variáveis" class="level2">
 <h2 class="anchored" data-anchor-id="atribuições-de-variáveis">2.2. Atribuições de variáveis</h2>
-<p>Assim como no python, você pode atribuir valores a uma variável. A atribuição é útil para reaproveitar valores em operações.</p>
+<p>Assim como no Python, você pode atribuir valores a uma variável. A atribuição é útil para reaproveitar valores em operações.</p>
 <p>Vamos fazer uma clássica operação: calcular o índice de massa corpórea.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">=</span> <span class="dv">94</span></span>
@@ -302,22 +323,1349 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><strong>Observação!</strong> Ao criar nome de variáveis é importante se atentar a algumas regras!</p>
 <ul>
-<li><p><strong>Não</strong> coloque palavras separadas (ex.: <code>imc Daniel</code>);</p></li>
-<li><p><strong>Não</strong> coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de <code>pesoConceição</code>, utilize <code>pesoConceicao</code>)</p></li>
+<li><strong>Não</strong> coloque palavras separadas (ex.: <code>imc Daniel</code>);</li>
+<li><strong>Não</strong> coloque caracteres especiais, como acentos, cedilhas) (ex.: ao invés de <code>pesoConceição</code>, utilize <code>pesoConceicao</code>)</li>
+<li>O R é case sensitive. Ou seja, o nome de uma variável <code>imcDaniel</code> <strong>é diferente</strong> de <code>IMCDaniel</code>.</li>
 </ul>
 </blockquote>
-<p>Pronto!</p>
-<p><img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3EwbmJlbGRrZXFoa2Z2c3d2aXplMTQzeWJkdXZoNGpxZzA2MDV3ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fUQ4rhUZJYiQsas6WD/giphy.gif" class="img-fluid"></p>
-<p><strong>Agora a parte legal começa!</strong></p>
+<blockquote class="blockquote">
+<p><strong>Exercício 2:</strong> Faça o cálculo do seu IMC como exercício!</p>
+</blockquote>
+</section>
+<section id="carregando-bibliotecas" class="level2">
+<h2 class="anchored" data-anchor-id="carregando-bibliotecas">2.3. Carregando bibliotecas</h2>
+<p>Eu costumo fazer um paralelo que o R é como o Batman.</p>
+<p>O Batman sozinho possui algumas habilidades. Ele sabe artes marciais e é muito inteligente. Afinal, é o detetive dos quadrinhos.</p>
+<p>Mas o Batman não tem superforça, não tem velocidade. A habilidades dele vem dos equipamentos dele, né? O Batmóvel, o cinto de utilidades…</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/clipboard-3854683481.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="367"></p>
+<p><img src="images/clipboard-1412670007.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="234"></p>
+</figure>
+</div>
+<p>O R por si só possui muitas funcionalidades.</p>
+<p>Mas ele ganha outra dimensão de utilidade quando você instala <strong>pacotes</strong> nele. Por exemplo, vamos ver um pacote de visualização de dados chamado <code>ggplot2</code>.</p>
+<p>O R sozinho faz gráficos. Veja o boxplot abaixo. Foi feito sem nenhum pacote adicional.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula01_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Mas eu posso fazer gráficos muito mais bonitos e customizados se eu usar pacotes de visualização de dados como o pacote <code>ggplot2</code>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula01_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="instalando-um-pacote" class="level3">
+<h3 class="anchored" data-anchor-id="instalando-um-pacote">2.3.1. Instalando um pacote</h3>
+<p>Tá! Mas como faz para instalar pacotes?</p>
+<p>Lá na parte de baixo, você vai escrever o comando <code>install.packages("ggplot2")</code> e apertar Enter (Lá embaixo, no campo Console, basta você apertar Enter para ele executar!).</p>
+<blockquote class="blockquote">
+<ul>
+<li>👨‍🏫O que esta linha de código significa? Você está usando o comando <code>install.packages()</code> para instalar o pacote que você quer, nesse caso, o ggplot2.</li>
+</ul>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/clipboard-368966110.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Quando você pede para instalar, vai notar um tanto de linha aparecendo aqui embaixo. Aguarde ele parar de trazer informação. Ao final, geralmente você vê algum texto do tipo “<em>The downloaded source packages are in…</em>”.</p>
+<p>Agora é sua vez! Faça o mesmo procedimento para instalar os seguintes pacotes: <code>skimr</code>, <code>dplyr</code> , <code>gt</code> e <code>gapminder</code> .</p>
+</section>
+<section id="carregando-o-pacote" class="level3">
+<h3 class="anchored" data-anchor-id="carregando-o-pacote">2.3.2. Carregando o pacote</h3>
+<p>Depois de instalar, você precisa carregar o pacote no seu código para conseguir usar as funcionalidades dele.</p>
+<p>Como faz isso?</p>
+<p>Você vai usar o comando <code>library</code> e o nome do pacote: <code>library(ggplot2)</code>, por exemplo. Depois clique em ctrl + Enter.</p>
+<p><img src="images/clipboard-2106149672.png" class="img-fluid"></p>
+<p>Carregue os pacotes que instalamos antes: <code>ggplot2</code>, <code>dplyr</code> , <code>gt</code> , <code>skimr</code> e <code>gapminder</code>.</p>
+</section>
+</section>
+<section id="comentários" class="level2">
+<h2 class="anchored" data-anchor-id="comentários">2.4. Comentários</h2>
+<p>Sempre que tiver um # no código, o R entende que temos um comentário e, portanto, ele não executa a linha, ou seja, ele pula a linha.</p>
+<p>Fazer comentários ao longo do código é uma boa prática para que outras pessoas entendam o que você está fazendo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula a média de um conjunto de dados </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>media <span class="ot">=</span> <span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">9</span>))</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calcula a correlação entre dois conjuntos de dados</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>correlacao <span class="ot">=</span>  <span class="fu">cor</span>(<span class="fu">c</span>(<span class="dv">7</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">9</span>),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">9</span>, <span class="dv">3</span>))</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>media</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>correlacao</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.1996122</code></pre>
+</div>
+</div>
+<p><strong>Pronto! Agora a parte legal começa!</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHE4d3oxdHZyMnZ0ZndqbjRrbzJlbTR1eGlia2llZWpscWN5ajNpdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/CjmvTCZf2U3p09Cn0h/giphy.gif" class="img-fluid quarto-figure quarto-figure-center figure-img" width="154"></p>
 </figure>
 </div>
 </section>
 <section id="carregando-os-dados-e-realizando-os-primeiros-tratamentos" class="level2">
-<h2 class="anchored" data-anchor-id="carregando-os-dados-e-realizando-os-primeiros-tratamentos">Carregando os dados e realizando os primeiros tratamentos</h2>
-<p>Nós vamos fazer o carregamento</p>
+<h2 class="anchored" data-anchor-id="carregando-os-dados-e-realizando-os-primeiros-tratamentos">3. Carregando os dados e realizando os primeiros tratamentos</h2>
+<p>Nós vamos trabalhar com uma base de dados chamada gapminder.</p>
+<p>Esta base foi desenvolvida por um instituto chamado <a href="https://www.gapminder.org/">Gapminder</a>. Em tradução livre retira do site:</p>
+<blockquote class="blockquote">
+<p><em>“A Gapminder é uma fundação sueca independente, sem vínculos políticos, religiosos ou econômicos.</em></p>
+<p><em>O Gapminder identifica equívocos sistemáticos sobre tendências e proporções globais importantes e usa dados confiáveis ​​para desenvolver materiais didáticos fáceis de entender, a fim de livrar as pessoas desses equívocos.”</em></p>
+</blockquote>
+<p>Vamos acessar um conjunto de dados (dataset) que está no pacote gapminder e salvar em um objeto que chamaremos de dados. Obs.: não esqueça de apertar ctrl + enter para rodar a linha.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">=</span> gapminder<span class="sc">::</span>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p>O que estou fazendo? Estou falando: R, acesse um conjunto de dados chamado <code>gapminder</code> que está dentro do pacote <code>gapmider</code> e guarde em um objeto que eu vou chamar de <code>dados</code>.</p>
+</blockquote>
+<p>Para dar uma primeira conferida nos dados, use a função <code>head()</code>. Ela mostra as seis primeiras linhas do conjunto de dados.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.
+6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+</div>
+</div>
+<p>Você também pode usar <code>glimpse()</code> para ver um resumo da estrutura dos dados — quais colunas existem e que tipo de informação cada uma guarda.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Interpretando as colunas</strong></p>
+<p><code>country</code> = país, <code>continent</code> = continente, <code>year</code> = ano, <code>lifeExp</code> = expectativa de vida, <code>pop</code> = população, <code>gdpPercap</code> = PIB per capita.</p>
+<p>Note também que existem o tipo da variável ao lado do nome. Variáveis <code>fct</code> são qualitativas, variáveis <code>dbl</code> são quantitativas contínuas e variáveis <code>int</code> são quantitativas contínuas.</p>
+</blockquote>
+<p><strong>Atenção!</strong> É muito importante inspecionar seus dados. Entender bem o que significam. Uma das fontes básicas - além do próprio conjunto de dados - é o dicionário de dados. Lembra da aula do dia 06/04 que vimos os dicionários de algumas bases?</p>
+<p>Uma última forma de inspecionar os dados é por meio da janela <em>Environment</em>. Clicando sobre a setinha azul, será aberto um pequeno recorte do conjunto de dados.</p>
+<p><img src="images/clipboard-3041646318.png" class="img-fluid"></p>
+</section>
+<section id="tudo-que-vimos-no-quadro" class="level2">
+<h2 class="anchored" data-anchor-id="tudo-que-vimos-no-quadro">4. Tudo que vimos no quadro</h2>
+<p>Essa seção é bem rápida. Sabe tudo que vimos no quadro, calculado a mão? Essa seção resolve.</p>
+<p>No quadro trabalhamos com conjuntos de dados bem pequenos (10 números no máximo).</p>
+<p>Mas e seu eu tiver centenas, milhares ou milhões e registros? É humanamente impossível fazer na mão. Então usamos o software para resolver.</p>
+<p>Separei o seguinte conjunto de dados que possui registros para o ano de 2002. O conjunto tem 142 observações.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_2002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 142
+Columns: 6
+$ country   &lt;fct&gt; "Afghanistan", "Albania", "Algeria", "Angola", "Argentina", …
+$ continent &lt;fct&gt; Asia, Europe, Africa, Africa, Americas, Oceania, Europe, Asi…
+$ year      &lt;int&gt; 2002, 2002, 2002, 2002, 2002, 2002, 2002, 2002, 2002, 2002, …
+$ lifeExp   &lt;dbl&gt; 42.129, 75.651, 70.994, 41.003, 74.340, 80.370, 78.980, 74.7…
+$ pop       &lt;int&gt; 25268405, 3508512, 31287142, 10866106, 38331121, 19546792, 8…
+$ gdpPercap &lt;dbl&gt; 726.7341, 4604.2117, 5288.0404, 2773.2873, 8797.6407, 30687.…</code></pre>
+</div>
+</div>
+<p>Vamos calcular as medidas resumo.</p>
+<p>Sabe aquele tanto de cálculo de média, quartil, mediana, desvio-padrão que fizemos na mão? Uma linha de código resolve tudo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skim</span>(dados_2002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">dados_2002</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">142</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 11%">
+<col style="width: 15%">
+<col style="width: 8%">
+<col style="width: 10%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">country</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: left;">Afg: 1, Alb: 1, Alg: 1, Ang: 1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">continent</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Afr: 52, Asi: 33, Eur: 30, Ame: 25</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">year</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: right;">2002.00</td>
+<td style="text-align: left;">▁▁▇▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">lifeExp</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">65.69</td>
+<td style="text-align: right;">12.28</td>
+<td style="text-align: right;">39.19</td>
+<td style="text-align: right;">55.52</td>
+<td style="text-align: right;">70.83</td>
+<td style="text-align: right;">75.46</td>
+<td style="text-align: right;">82.00</td>
+<td style="text-align: left;">▃▃▃▆▇</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">pop</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">41457588.58</td>
+<td style="text-align: right;">140848283.29</td>
+<td style="text-align: right;">170372.00</td>
+<td style="text-align: right;">4173506.00</td>
+<td style="text-align: right;">10372918.50</td>
+<td style="text-align: right;">26545556.25</td>
+<td style="text-align: right;">1280400000.00</td>
+<td style="text-align: left;">▇▁▁▁▁</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gdpPercap</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9917.85</td>
+<td style="text-align: right;">11154.11</td>
+<td style="text-align: right;">241.17</td>
+<td style="text-align: right;">1409.57</td>
+<td style="text-align: right;">5319.80</td>
+<td style="text-align: right;">13359.51</td>
+<td style="text-align: right;">44683.98</td>
+<td style="text-align: left;">▇▁▁▂▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Vamos aplicar uma correlação entre duas variáveis: expectativa de vida (<code>lifeExp</code>) e PIB per capita (<code>gdpPercap</code>). Uma linha resolve! Existe uma associação positiva de 0,68 aproximadamente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(dados_2002<span class="sc">$</span>lifeExp, </span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    dados_2002<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 93394.44</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(dados_2002<span class="sc">$</span>lifeExp, </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    dados_2002<span class="sc">$</span>gdpPercap)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6818578</code></pre>
+</div>
+</div>
+</section>
+<section id="explorando-os-dados-com-o-dplyr" class="level2">
+<h2 class="anchored" data-anchor-id="explorando-os-dados-com-o-dplyr">5. Explorando os dados com o <code>dplyr</code></h2>
+<p>O <code>dplyr</code> é um dos pacotes mais usados em R para tratamento e manipulação de dados. Ele oferece funções simples e diretas que, combinadas, permitem fazer análises poderosas.</p>
+<p>Pense no <code>dplyr</code> como um canivete suíço: cada ferramenta tem uma função específica e você vai combinando elas conforme a necessidade.</p>
+<p>As principais funções que vamos aprender são:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Função</th>
+<th>O que faz</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>select()</code></td>
+<td>Seleciona <strong>colunas</strong></td>
+</tr>
+<tr class="even">
+<td><code>rename()</code></td>
+<td>Renomeia <strong>colunas</strong></td>
+</tr>
+<tr class="odd">
+<td><code>filter()</code></td>
+<td>Filtra <strong>linhas</strong> por uma condição</td>
+</tr>
+<tr class="even">
+<td><code>arrange()</code></td>
+<td><strong>Ordena</strong> as linhas</td>
+</tr>
+<tr class="odd">
+<td><code>group_by()</code></td>
+<td><strong>Agrupa</strong> os dados por uma categoria</td>
+</tr>
+<tr class="even">
+<td><code>summarise()</code></td>
+<td><strong>Resume</strong> os dados com estatísticas</td>
+</tr>
+<tr class="odd">
+<td><code>mutate()</code></td>
+<td><strong>Cria</strong> uma nova variável</td>
+</tr>
+<tr class="even">
+<td><code>left_join()</code></td>
+<td><strong>Junta</strong> seu conjunto de dados com outro dataset.</td>
+</tr>
+</tbody>
+</table>
+<p>Vamos ver cada uma delas!</p>
+</section>
+<section id="select-escolhendo-colunas" class="level2">
+<h2 class="anchored" data-anchor-id="select-escolhendo-colunas">5.1. <code>select()</code> — Escolhendo colunas</h2>
+<p>Às vezes, a base de dados tem muitas variáveis e você só precisa de algumas. O <code>select()</code> serve para isso.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Selecionando apenas país, ano e expectativa de vida</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, year, lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 3
+   country      year lifeExp
+   &lt;fct&gt;       &lt;int&gt;   &lt;dbl&gt;
+ 1 Afghanistan  1952    28.8
+ 2 Afghanistan  1957    30.3
+ 3 Afghanistan  1962    32.0
+ 4 Afghanistan  1967    34.0
+ 5 Afghanistan  1972    36.1
+ 6 Afghanistan  1977    38.4
+ 7 Afghanistan  1982    39.9
+ 8 Afghanistan  1987    40.8
+ 9 Afghanistan  1992    41.7
+10 Afghanistan  1997    41.8
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Dica!</strong> Você também pode usar <code>select()</code> para <strong>remover</strong> uma coluna colocando um <code>-</code> antes do nome dela.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Removendo a coluna pop e guardando em um novo objeto chamado dados_sem_pop. Veja que agora não temos mais a variável pop</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>dados_sem_pop <span class="ot">=</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">select</span>(<span class="sc">-</span>pop)</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_sem_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 5
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 3:</strong> selecione apenas as colunas <code>country</code>, <code>year</code>, <code>continent</code> e <code>gdpPercap</code>. e armazene em um novo conjunto de dados chamado dados_2.</p>
+</blockquote>
+</section>
+<section id="filter-filtrando-linhas" class="level2">
+<h2 class="anchored" data-anchor-id="filter-filtrando-linhas">5.2. <code>filter()</code> — Filtrando linhas</h2>
+<p>O <code>filter()</code> permite que você fique apenas com as linhas que atendem a uma condição.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apenas os dados do Brasil</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Brazil"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 6
+   country continent  year lifeExp       pop gdpPercap
+   &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+ 1 Brazil  Americas   1952    50.9  56602560     2109.
+ 2 Brazil  Americas   1957    53.3  65551171     2487.
+ 3 Brazil  Americas   1962    55.7  76039390     3337.
+ 4 Brazil  Americas   1967    57.6  88049823     3430.
+ 5 Brazil  Americas   1972    59.5 100840058     4986.
+ 6 Brazil  Americas   1977    61.5 114313951     6660.
+ 7 Brazil  Americas   1982    63.3 128962939     7031.
+ 8 Brazil  Americas   1987    65.2 142938076     7807.
+ 9 Brazil  Americas   1992    67.1 155975974     6950.
+10 Brazil  Americas   1997    69.4 168546719     7958.
+11 Brazil  Americas   2002    71.0 179914212     8131.
+12 Brazil  Americas   2007    72.4 190010647     9066.</code></pre>
+</div>
+</div>
+<p>Você pode combinar condições usando <code>&amp;</code> (E) e <code>|</code> (OU):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Brasil E ano maior que 2000</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">==</span> <span class="st">"Brazil"</span> <span class="sc">&amp;</span> year <span class="sc">&gt;</span> <span class="dv">2000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 6
+  country continent  year lifeExp       pop gdpPercap
+  &lt;fct&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+1 Brazil  Americas   2002    71.0 179914212     8131.
+2 Brazil  Americas   2007    72.4 190010647     9066.</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<ul>
+<li>Ao usar o E (&amp;) para filtrar, mantemos apenas os registros que <strong>satisfazem a intersecção das duas condições</strong>. Ou seja, se o país é Brasil e o ano é superior a 2000.</li>
+</ul>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Países da América OU Asia</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Americas"</span> <span class="sc">|</span> continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 696 × 6
+   country     continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Afghanistan Asia       1952    28.8  8425333      779.
+ 2 Afghanistan Asia       1957    30.3  9240934      821.
+ 3 Afghanistan Asia       1962    32.0 10267083      853.
+ 4 Afghanistan Asia       1967    34.0 11537966      836.
+ 5 Afghanistan Asia       1972    36.1 13079460      740.
+ 6 Afghanistan Asia       1977    38.4 14880372      786.
+ 7 Afghanistan Asia       1982    39.9 12881816      978.
+ 8 Afghanistan Asia       1987    40.8 13867957      852.
+ 9 Afghanistan Asia       1992    41.7 16317921      649.
+10 Afghanistan Asia       1997    41.8 22227415      635.
+# ℹ 686 more rows</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<ul>
+<li>Ao usar o OU (|) para filtrar, mantemos os registros que satisfazem uma OU outra condição. Ou seja, o continente é Americas OU o continente é Asia.</li>
+<li>Para comparar valores de texto, use aspas (<code>"Brazil"</code>). Para números, não precisa (<code>year &gt; 2002</code>).</li>
+<li>Se você quiser pegar anos maiores que 2002, você terá que colocar <code>year &gt; 2002</code>. Porém, se quiser pegar <strong>inclusive</strong> o ano 2002, terá que usar o operador <code>&gt;=</code>, ou seja, <code>year &gt;= 2002</code>.</li>
+<li>E lembre-se: comparação de igualdade usa <strong>dois sinais de igual</strong> (<code>==</code>), não um só!</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>Exercício 4:</strong> filtre os dados para mostrar apenas países da <strong>África</strong> (<code>Africa</code>) no ano de <strong>2007</strong> e armazene em um novo objeto.</p>
+</blockquote>
+</section>
+<section id="o-pipe-encadeando-operações" class="level2">
+<h2 class="anchored" data-anchor-id="o-pipe-encadeando-operações">5.3. O pipe <code>|&gt;</code> — Encadeando operações</h2>
+<p>O <strong>pipe</strong> é um operador famoso no R. Você já viu ele acima e é escrito como <code>|&gt;</code>. Ao invés de escrevê-lo você pode usar o atalho dele que é <code>ctrl + shift + m</code>).</p>
+<p>Ele serve para <strong>encadear</strong> operações, ou seja, passar o resultado de uma função diretamente para a próxima. Isso evita criar um monte de variáveis intermediárias e deixa o código muito mais legível.</p>
+<p>Pense assim: o pipe significa <strong>“e então…”.</strong> Veja abaixo o encademando de duas operações: <code>select()</code> e <code>filter()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>exp_vida_2007 <span class="ot">=</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, year, lifeExp) <span class="sc">|&gt;</span> </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="arrange-ordenando-os-dados" class="level2">
+<h2 class="anchored" data-anchor-id="arrange-ordenando-os-dados">5.4. <code>arrange()</code> — Ordenando os dados</h2>
+<p>O <code>arrange()</code> ordena as linhas de acordo com uma coluna. Por padrão, ele ordena do menor para o maior.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordenando por expectativa de vida (do menor para o maior)</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(lifeExp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 6
+   country                  continent  year lifeExp      pop gdpPercap
+   &lt;fct&gt;                    &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+ 1 Swaziland                Africa     2007    39.6  1133066     4513.
+ 2 Mozambique               Africa     2007    42.1 19951656      824.
+ 3 Zambia                   Africa     2007    42.4 11746035     1271.
+ 4 Sierra Leone             Africa     2007    42.6  6144562      863.
+ 5 Lesotho                  Africa     2007    42.6  2012649     1569.
+ 6 Angola                   Africa     2007    42.7 12420476     4797.
+ 7 Zimbabwe                 Africa     2007    43.5 12311143      470.
+ 8 Afghanistan              Asia       2007    43.8 31889923      975.
+ 9 Central African Republic Africa     2007    44.7  4369038      706.
+10 Liberia                  Africa     2007    45.7  3193942      415.
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
+<p>Para ordenar do <strong>maior para o menor</strong>, use <code>desc()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Os países com maior expectativa de vida em 2007</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 6
+   country          continent  year lifeExp       pop gdpPercap
+   &lt;fct&gt;            &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;int&gt;     &lt;dbl&gt;
+ 1 Japan            Asia       2007    82.6 127467972    31656.
+ 2 Hong Kong, China Asia       2007    82.2   6980412    39725.
+ 3 Iceland          Europe     2007    81.8    301931    36181.
+ 4 Switzerland      Europe     2007    81.7   7554661    37506.
+ 5 Australia        Oceania    2007    81.2  20434176    34435.
+ 6 Spain            Europe     2007    80.9  40448191    28821.
+ 7 Sweden           Europe     2007    80.9   9031088    33860.
+ 8 Israel           Asia       2007    80.7   6426679    25523.
+ 9 France           Europe     2007    80.7  61083916    30470.
+10 Canada           Americas   2007    80.7  33390141    36319.
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 5:</strong> quais eram os 5 países com <strong>menor PIB per capita</strong> em 1952? Use <code>filter()</code> e <code>arrange()</code> para descobrir.</p>
+</blockquote>
+</section>
+<section id="summarise-resumindo-os-dados" class="level2">
+<h2 class="anchored" data-anchor-id="summarise-resumindo-os-dados">5.5. <code>summarise()</code> — Resumindo os dados</h2>
+<p>O <code>summarise()</code> permite calcular estatísticas resumidas da base de dados, como média, soma, mínimo e máximo.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando a média global de expectativa de vida em 2007</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_expectativa =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 1
+  media_expectativa
+              &lt;dbl&gt;
+1              67.0</code></pre>
+</div>
+</div>
+<p>Você pode calcular várias estatísticas ao mesmo tempo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">media_expectativa =</span> <span class="fu">mean</span>(lifeExp),</span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">mediana_expectativa =</span> <span class="fu">median</span>(lifeExp),</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">q1_expectativa =</span> <span class="fu">quantile</span>(lifeExp, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">q3_expectativa =</span> <span class="fu">quantile</span>(lifeExp, <span class="at">probs =</span> <span class="fl">0.75</span>),</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">dp_expectativa =</span> <span class="fu">sd</span>(lifeExp),</span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">menor_expectativa =</span> <span class="fu">min</span>(lifeExp),</span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">maior_expectativa =</span> <span class="fu">max</span>(lifeExp),</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 7
+  media_expectativa mediana_expectativa q1_expectativa q3_expectativa
+              &lt;dbl&gt;               &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;
+1              67.0                71.9           57.2           76.4
+# ℹ 3 more variables: dp_expectativa &lt;dbl&gt;, menor_expectativa &lt;dbl&gt;,
+#   maior_expectativa &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 6.</strong> Filtre apenas os países das Americas do ano de 2002 e faça as estatísticas básicas: média, mediana, quartis 1 e 3, desvio-padrão.</p>
+<p><strong>Exercício 7.</strong> Filtre apenas os países da Ásia do ano de 2002 e e faça as estatísticas básicas: média, mediana, quartis 1 e 3, desvio-padrão.</p>
+<p><strong>Exercício 8.</strong> Com base nas estatísticas básicas, interprete os resultados.</p>
+</blockquote>
+</section>
+<section id="group_by-summarise-a-dupla-poderosa" class="level2">
+<h2 class="anchored" data-anchor-id="group_by-summarise-a-dupla-poderosa">5.6. <code>group_by()</code> + <code>summarise()</code> — A dupla poderosa</h2>
+<p>O <code>group_by()</code> sozinho não faz muita coisa. A magia acontece quando você o combina com o <code>summarise()</code>. Juntos, eles calculam estatísticas <strong>por grupo</strong>.</p>
+<p>Por exemplo: e se eu quiser saber a média de expectativa de vida <strong>por continente</strong>?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_expectativa =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  continent media_expectativa
+  &lt;fct&gt;                 &lt;dbl&gt;
+1 Africa                 54.8
+2 Americas               73.6
+3 Asia                   70.7
+4 Europe                 77.6
+5 Oceania                80.7</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>O que estou fazendo aqui?</p>
+<ul>
+<li>Pegando o objeto chamado dados, filtrando para pegar apenas os registros de 2007.</li>
+<li>Em seguida, peço para agrupar todos os registros, cuja variável <code>continent</code> seja igual.</li>
+<li>Por fim, aplico uma média (<code>mean</code>) na variável lifeExp e armazeno em uma nova variável que vou chamar de <code>media_expectativa</code>.</li>
+</ul>
+</blockquote>
+<p>Você pode inclusive ordenar o resultado para ficar mais apresentável:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_expectativa =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">|&gt;</span> </span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media_expectativa)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  continent media_expectativa
+  &lt;fct&gt;                 &lt;dbl&gt;
+1 Oceania                80.7
+2 Europe                 77.6
+3 Americas               73.6
+4 Asia                   70.7
+5 Africa                 54.8</code></pre>
+</div>
+</div>
+<p><strong>O que aconteceu aqui?</strong> Pegamos os dados de 2007, agrupamos por continente e calculamos a média de expectativa de vida de cada grupo. O <code>arrange()</code> no final só organizou o resultado do maior para o menor.</p>
+<p>Uma última coisa legal que você pode fazer para deixar sua tabelinha ainda mais bonita é usar a função <code>gt()</code>. Esta função faz parte do pacote gt que você carregou lá em cima em <code>library(gt)</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_expectativa =</span> <span class="fu">mean</span>(lifeExp)) <span class="sc">|&gt;</span> </span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media_expectativa)) <span class="sc">|&gt;</span> </span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="occowdcxpu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#occowdcxpu table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#occowdcxpu thead, #occowdcxpu tbody, #occowdcxpu tfoot, #occowdcxpu tr, #occowdcxpu td, #occowdcxpu th {
+  border-style: none;
+}
+
+#occowdcxpu p {
+  margin: 0;
+  padding: 0;
+}
+
+#occowdcxpu .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#occowdcxpu .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#occowdcxpu .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#occowdcxpu .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#occowdcxpu .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#occowdcxpu .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#occowdcxpu .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#occowdcxpu .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#occowdcxpu .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#occowdcxpu .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#occowdcxpu .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#occowdcxpu .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#occowdcxpu .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#occowdcxpu .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#occowdcxpu .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#occowdcxpu .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#occowdcxpu .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#occowdcxpu .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#occowdcxpu .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#occowdcxpu .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#occowdcxpu .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#occowdcxpu .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#occowdcxpu .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#occowdcxpu .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#occowdcxpu .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#occowdcxpu .gt_left {
+  text-align: left;
+}
+
+#occowdcxpu .gt_center {
+  text-align: center;
+}
+
+#occowdcxpu .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#occowdcxpu .gt_font_normal {
+  font-weight: normal;
+}
+
+#occowdcxpu .gt_font_bold {
+  font-weight: bold;
+}
+
+#occowdcxpu .gt_font_italic {
+  font-style: italic;
+}
+
+#occowdcxpu .gt_super {
+  font-size: 65%;
+}
+
+#occowdcxpu .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#occowdcxpu .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#occowdcxpu .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#occowdcxpu .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#occowdcxpu .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#occowdcxpu .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#occowdcxpu .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#occowdcxpu .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#occowdcxpu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="continent" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">continent</th>
+<th id="media_expectativa" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">media_expectativa</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="continent">Oceania</td>
+<td class="gt_row gt_right" headers="media_expectativa">80.71950</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="continent">Europe</td>
+<td class="gt_row gt_right" headers="media_expectativa">77.64860</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="continent">Americas</td>
+<td class="gt_row gt_right" headers="media_expectativa">73.60812</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="continent">Asia</td>
+<td class="gt_row gt_right" headers="media_expectativa">70.72848</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="continent">Africa</td>
+<td class="gt_row gt_right" headers="media_expectativa">54.80604</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Além de sumarizar os resultados usando medidas de tendência central, posição ou variação. Você pode usar o <code>group_by</code> e <code>summarise</code> para fazer algumas contagens. Quero saber quantos países no ano de 2002 temos em cada continente.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">n</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  continent total
+  &lt;fct&gt;     &lt;int&gt;
+1 Africa       52
+2 Americas     25
+3 Asia         33
+4 Europe       30
+5 Oceania       2</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 9:</strong> usando os dados de <strong>1952 e 2007</strong>, calcule a média de PIB per capita (<code>gdpPercap</code>) por continente nos dois anos. Apresente os resultados com a tabela estilizada usando a função <code>gt()</code>. O que mudou ao longo do tempo?</p>
+<p><em>Dica: você pode usar <code>filter(year == 1952 | year == 2007)</code> e depois agrupar por <code>continent</code> e <code>year</code>.</em></p>
+</blockquote>
+</section>
+<section id="a-função-rename" class="level2">
+<h2 class="anchored" data-anchor-id="a-função-rename">5.7. A função <code>rename()</code></h2>
+<p>Você pode renomear as variáveis. Vamos supor que ao invés de trabalhar com as variáveis em inglês, você queira trabalhar com elas em português. Como renomear?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>dados_pt <span class="ot">=</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rename</span>(<span class="at">pais =</span> country, </span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">continente =</span> continent,</span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ano =</span> year, </span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">ExpVida =</span> lifeExp, </span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">Populacao =</span> pop, </span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">PIB_percapita =</span> gdpPercap)</span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_pt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 6
+$ pais          &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanista…
+$ continente    &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, As…
+$ ano           &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 19…
+$ ExpVida       &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, …
+$ Populacao     &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372…
+$ PIB_percapita &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11…</code></pre>
+</div>
+</div>
+<p>Veja que os nomes das variáveis agora estão conforme você mudou.</p>
+<p>A função <code>rename()</code> é muito útil quando você tem variáveis expressas em códigos. Uma das bases que sugeri trabalhar se chama Munic. Nela as variáveis estão em códigos (ex.: VAR1010). Vale a pena renomear as variáveis nesses casos.</p>
+</section>
+<section id="criando-uma-nova-variável-usando-mutate" class="level2">
+<h2 class="anchored" data-anchor-id="criando-uma-nova-variável-usando-mutate">5.8. Criando uma nova variável usando mutate()</h2>
+<p>Você quer criar uma nova variável que representa o PIB.</p>
+<p>O PIB é o resultado da multiplicação da População pelo PIB per capita. Vamos chamar esta nova variável de <code>GDP</code> (<em>Gross Domestic Product,</em> Produto Interno Bruto ou PIB em inglês).</p>
+<p>Como o PIB é um número muito algo, vamos criar uma nova variável chamada <code>log_GDP</code>. Essa basicamente é uma transformação logarítimica na base 10. Além disso, apliquei um arredondamento de três casas decimais por meio da função <code>round</code>.</p>
+<p>Tudo isso foi armazenado num novo objeto chamado <code>dados_PIB</code>.</p>
+<p>Inspecione como ficou com a função <code>glimpse</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>dados_PIB <span class="ot">=</span> dados <span class="sc">|&gt;</span> </span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GDP =</span> pop <span class="sc">*</span> gdpPercap) <span class="sc">|&gt;</span> </span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">log_GDP =</span> <span class="fu">round</span>(<span class="fu">log10</span>(GDP),<span class="dv">3</span>)) </span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_PIB)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1,704
+Columns: 8
+$ country   &lt;fct&gt; "Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", …
+$ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+$ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+$ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+$ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+$ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …
+$ GDP       &lt;dbl&gt; 6567086330, 7585448670, 8758855797, 9648014150, 9678553274, …
+$ log_GDP   &lt;dbl&gt; 9.817, 9.880, 9.942, 9.984, 9.986, 10.068, 10.100, 10.073, 1…</code></pre>
+</div>
+</div>
+<p>Vamos criar uma nova variável para designar os países que em 2007 possuíam mais de 75 milhões de habitantes.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pop_75 =</span> <span class="fu">if_else</span>(pop <span class="sc">&gt;</span> <span class="dv">75000000</span>, </span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Superior a 75 milhões"</span>,</span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>                          <span class="st">"Igual ou inferior a 75 milhões"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(country, pop, pop_75)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   country           pop pop_75                        
+   &lt;fct&gt;           &lt;int&gt; &lt;chr&gt;                         
+ 1 Afghanistan  31889923 Igual ou inferior a 75 milhões
+ 2 Albania       3600523 Igual ou inferior a 75 milhões
+ 3 Algeria      33333216 Igual ou inferior a 75 milhões
+ 4 Angola       12420476 Igual ou inferior a 75 milhões
+ 5 Argentina    40301927 Igual ou inferior a 75 milhões
+ 6 Australia    20434176 Igual ou inferior a 75 milhões
+ 7 Austria       8199783 Igual ou inferior a 75 milhões
+ 8 Bahrain        708573 Igual ou inferior a 75 milhões
+ 9 Bangladesh  150448339 Superior a 75 milhões         
+10 Belgium      10392226 Igual ou inferior a 75 milhões
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 10.</strong> Acesse apenas os dados de 2002 e crie uma nova variável para designar os países que nesse ano possuíam mais que a mediana da população. Ou seja, se o valor for superior à mediana, a nova variável vai receber uma categoria chamada “Acima da mediana”. Caso contrário, vai receber um valor de “Abaixo da mediana”.</p>
+</blockquote>
+<p>Lá em cima fizemos a contagem de países por continente no ano de 2002, certo?</p>
+<p>Vamos criar uma nova variável chamada proporcao. Ao invés de apresentar os resultados em valores absolutos, vamos ver em termos percentuais.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span> </span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">total =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcao =</span> total <span class="sc">/</span> <span class="fu">sum</span>(total)) <span class="sc">|&gt;</span> </span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcao =</span> <span class="fu">round</span>(proporcao, <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  continent total proporcao
+  &lt;fct&gt;     &lt;int&gt;     &lt;dbl&gt;
+1 Africa       52     0.366
+2 Americas     25     0.176
+3 Asia         33     0.232
+4 Europe       30     0.211
+5 Oceania       2     0.014</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Exercício 11.</strong> Faça a contagem e a proporção de países em 1952 e veja se são iguais que em 2002.</p>
+</blockquote>
+<p>Vamos agora criar uma nova variável, chamada <code>status_pop</code>, que segue a seguinte lógica:</p>
+<ul>
+<li><p>Se a população for maior que o terceiro quartil, então a variável recebe a categoria “Muito alta”;</p></li>
+<li><p>Se a população estiver entre a mediana e o terceiro quartil, então a variável recebe a categoria “Alta”;</p></li>
+<li><p>Se a população estiver entre o primeiro quartil e a mediana, então a variável recebe a categoria “Média”;</p></li>
+<li><p>Se a população estiver abaixo do primeiro quartil, então a variável recebe a categoria “Baixa”.</p></li>
+</ul>
+<p>Armazene o resultado desta operação em um novo objeto chamado <code>dados_pop</code>. Para fazer isso, usaremos uma estrutura condicional chamada <code>case_when()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>status_pop <span class="ot">&lt;-</span> </span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span> </span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb72-4"><a href="#cb72-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">status_pop =</span></span>
+<span id="cb72-5"><a href="#cb72-5" aria-hidden="true" tabindex="-1"></a>           <span class="fu">case_when</span>(</span>
+<span id="cb72-6"><a href="#cb72-6" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&gt;=</span> <span class="fu">quantile</span>(pop, <span class="fl">0.75</span>) <span class="sc">~</span> <span class="st">"Muito Alta"</span>,</span>
+<span id="cb72-7"><a href="#cb72-7" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&lt;</span> <span class="fu">quantile</span>(pop, <span class="fl">0.75</span>) <span class="sc">&amp;</span> </span>
+<span id="cb72-8"><a href="#cb72-8" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&gt;=</span> <span class="fu">quantile</span>(pop, <span class="fl">0.5</span>) <span class="sc">~</span> <span class="st">"Alta"</span>,</span>
+<span id="cb72-9"><a href="#cb72-9" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&lt;</span> <span class="fu">quantile</span>(pop, <span class="fl">0.5</span>) <span class="sc">&amp;</span></span>
+<span id="cb72-10"><a href="#cb72-10" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&gt;=</span> <span class="fu">quantile</span>(pop, <span class="fl">0.25</span>) <span class="sc">~</span> <span class="st">"Média"</span>,</span>
+<span id="cb72-11"><a href="#cb72-11" aria-hidden="true" tabindex="-1"></a>                     pop <span class="sc">&lt;</span> <span class="fu">quantile</span>(pop, <span class="fl">0.25</span>) <span class="sc">~</span> <span class="st">"Baixa"</span></span>
+<span id="cb72-12"><a href="#cb72-12" aria-hidden="true" tabindex="-1"></a>         )) <span class="sc">|&gt;</span> </span>
+<span id="cb72-13"><a href="#cb72-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(country, pop, status_pop)</span>
+<span id="cb72-14"><a href="#cb72-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb72-15"><a href="#cb72-15" aria-hidden="true" tabindex="-1"></a>status_pop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 142 × 3
+   country           pop status_pop
+   &lt;fct&gt;           &lt;int&gt; &lt;chr&gt;     
+ 1 Afghanistan  25268405 Alta      
+ 2 Albania       3508512 Baixa     
+ 3 Algeria      31287142 Muito Alta
+ 4 Angola       10866106 Alta      
+ 5 Argentina    38331121 Muito Alta
+ 6 Australia    19546792 Alta      
+ 7 Austria       8148312 Média     
+ 8 Bahrain        656397 Baixa     
+ 9 Bangladesh  135656790 Muito Alta
+10 Belgium      10311970 Média     
+# ℹ 132 more rows</code></pre>
+</div>
+</div>
 </section>
 
 </main>
