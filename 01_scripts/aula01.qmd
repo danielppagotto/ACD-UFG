@@ -242,7 +242,7 @@ Lá na parte de baixo, você vai escrever o comando `install.packages("ggplot2")
 
 Quando você pede para instalar, vai notar um tanto de linha aparecendo aqui embaixo. Aguarde ele parar de trazer informação. Ao final, geralmente você vê algum texto do tipo "*The downloaded source packages are in...*".
 
-Agora é sua vez! Faça o mesmo procedimento para instalar os seguintes pacotes: `skimr`, `dplyr` , `gt` e `gapminder` .
+Agora é sua vez! Faça o mesmo procedimento para instalar os seguintes pacotes: `skimr`, `dplyr` , `gt`, vroom e `gapminder` .
 
 ### 2.3.2. Carregando o pacote
 
@@ -254,7 +254,7 @@ Você vai usar o comando `library` e o nome do pacote: `library(ggplot2)`, por e
 
 ![](images/clipboard-2106149672.png)
 
-Carregue os pacotes que instalamos antes: `ggplot2`, `dplyr` , `gt` , `skimr` e `gapminder`.
+Carregue os pacotes que instalamos antes: `ggplot2`, `dplyr` , `gt` , `skimr`, `vroom` e `gapminder`.
 
 ## 2.4. Comentários
 

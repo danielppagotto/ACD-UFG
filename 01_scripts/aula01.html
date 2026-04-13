@@ -382,7 +382,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>Quando você pede para instalar, vai notar um tanto de linha aparecendo aqui embaixo. Aguarde ele parar de trazer informação. Ao final, geralmente você vê algum texto do tipo “<em>The downloaded source packages are in…</em>”.</p>
-<p>Agora é sua vez! Faça o mesmo procedimento para instalar os seguintes pacotes: <code>skimr</code>, <code>dplyr</code> , <code>gt</code> e <code>gapminder</code> .</p>
+<p>Agora é sua vez! Faça o mesmo procedimento para instalar os seguintes pacotes: <code>skimr</code>, <code>dplyr</code> , <code>gt</code>, vroom e <code>gapminder</code> .</p>
 </section>
 <section id="carregando-o-pacote" class="level3">
 <h3 class="anchored" data-anchor-id="carregando-o-pacote">2.3.2. Carregando o pacote</h3>
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Como faz isso?</p>
 <p>Você vai usar o comando <code>library</code> e o nome do pacote: <code>library(ggplot2)</code>, por exemplo. Depois clique em ctrl + Enter.</p>
 <p><img src="images/clipboard-2106149672.png" class="img-fluid"></p>
-<p>Carregue os pacotes que instalamos antes: <code>ggplot2</code>, <code>dplyr</code> , <code>gt</code> , <code>skimr</code> e <code>gapminder</code>.</p>
+<p>Carregue os pacotes que instalamos antes: <code>ggplot2</code>, <code>dplyr</code> , <code>gt</code> , <code>skimr</code>, <code>vroom</code> e <code>gapminder</code>.</p>
 </section>
 </section>
 <section id="comentários" class="level2">
@@ -1052,23 +1052,23 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media_expectativa)) <span class="sc">|&gt;</span> </span>
 <span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="ltxbnidmhm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#ltxbnidmhm table {
+<div id="agtvwpwfdf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#agtvwpwfdf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#ltxbnidmhm thead, #ltxbnidmhm tbody, #ltxbnidmhm tfoot, #ltxbnidmhm tr, #ltxbnidmhm td, #ltxbnidmhm th {
+#agtvwpwfdf thead, #agtvwpwfdf tbody, #agtvwpwfdf tfoot, #agtvwpwfdf tr, #agtvwpwfdf td, #agtvwpwfdf th {
   border-style: none;
 }
 
-#ltxbnidmhm p {
+#agtvwpwfdf p {
   margin: 0;
   padding: 0;
 }
 
-#ltxbnidmhm .gt_table {
+#agtvwpwfdf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1094,12 +1094,12 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-left-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_caption {
+#agtvwpwfdf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#ltxbnidmhm .gt_title {
+#agtvwpwfdf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1111,7 +1111,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-width: 0;
 }
 
-#ltxbnidmhm .gt_subtitle {
+#agtvwpwfdf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1123,7 +1123,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-width: 0;
 }
 
-#ltxbnidmhm .gt_heading {
+#agtvwpwfdf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1135,13 +1135,13 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_bottom_border {
+#agtvwpwfdf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_col_headings {
+#agtvwpwfdf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1156,7 +1156,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_col_heading {
+#agtvwpwfdf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1176,7 +1176,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#ltxbnidmhm .gt_column_spanner_outer {
+#agtvwpwfdf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1188,15 +1188,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 4px;
 }
 
-#ltxbnidmhm .gt_column_spanner_outer:first-child {
+#agtvwpwfdf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#ltxbnidmhm .gt_column_spanner_outer:last-child {
+#agtvwpwfdf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#ltxbnidmhm .gt_column_spanner {
+#agtvwpwfdf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1208,11 +1208,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   width: 100%;
 }
 
-#ltxbnidmhm .gt_spanner_row {
+#agtvwpwfdf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#ltxbnidmhm .gt_group_heading {
+#agtvwpwfdf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1238,7 +1238,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   text-align: left;
 }
 
-#ltxbnidmhm .gt_empty_group_heading {
+#agtvwpwfdf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1253,15 +1253,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: middle;
 }
 
-#ltxbnidmhm .gt_from_md > :first-child {
+#agtvwpwfdf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#ltxbnidmhm .gt_from_md > :last-child {
+#agtvwpwfdf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#ltxbnidmhm .gt_row {
+#agtvwpwfdf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1280,7 +1280,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#ltxbnidmhm .gt_stub {
+#agtvwpwfdf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1293,7 +1293,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#ltxbnidmhm .gt_stub_row_group {
+#agtvwpwfdf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1307,15 +1307,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: top;
 }
 
-#ltxbnidmhm .gt_row_group_first td {
+#agtvwpwfdf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#ltxbnidmhm .gt_row_group_first th {
+#agtvwpwfdf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#ltxbnidmhm .gt_summary_row {
+#agtvwpwfdf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1325,16 +1325,16 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#ltxbnidmhm .gt_first_summary_row {
+#agtvwpwfdf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_first_summary_row.thick {
+#agtvwpwfdf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#ltxbnidmhm .gt_last_summary_row {
+#agtvwpwfdf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1344,7 +1344,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_grand_summary_row {
+#agtvwpwfdf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1354,7 +1354,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#ltxbnidmhm .gt_first_grand_summary_row {
+#agtvwpwfdf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1364,7 +1364,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_last_grand_summary_row_top {
+#agtvwpwfdf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1374,11 +1374,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_striped {
+#agtvwpwfdf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#ltxbnidmhm .gt_table_body {
+#agtvwpwfdf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1387,7 +1387,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_footnotes {
+#agtvwpwfdf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1401,7 +1401,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_footnote {
+#agtvwpwfdf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1410,7 +1410,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#ltxbnidmhm .gt_sourcenotes {
+#agtvwpwfdf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1424,7 +1424,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#ltxbnidmhm .gt_sourcenote {
+#agtvwpwfdf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1432,72 +1432,72 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#ltxbnidmhm .gt_left {
+#agtvwpwfdf .gt_left {
   text-align: left;
 }
 
-#ltxbnidmhm .gt_center {
+#agtvwpwfdf .gt_center {
   text-align: center;
 }
 
-#ltxbnidmhm .gt_right {
+#agtvwpwfdf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#ltxbnidmhm .gt_font_normal {
+#agtvwpwfdf .gt_font_normal {
   font-weight: normal;
 }
 
-#ltxbnidmhm .gt_font_bold {
+#agtvwpwfdf .gt_font_bold {
   font-weight: bold;
 }
 
-#ltxbnidmhm .gt_font_italic {
+#agtvwpwfdf .gt_font_italic {
   font-style: italic;
 }
 
-#ltxbnidmhm .gt_super {
+#agtvwpwfdf .gt_super {
   font-size: 65%;
 }
 
-#ltxbnidmhm .gt_footnote_marks {
+#agtvwpwfdf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#ltxbnidmhm .gt_asterisk {
+#agtvwpwfdf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#ltxbnidmhm .gt_indent_1 {
+#agtvwpwfdf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#ltxbnidmhm .gt_indent_2 {
+#agtvwpwfdf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#ltxbnidmhm .gt_indent_3 {
+#agtvwpwfdf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#ltxbnidmhm .gt_indent_4 {
+#agtvwpwfdf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#ltxbnidmhm .gt_indent_5 {
+#agtvwpwfdf .gt_indent_5 {
   text-indent: 25px;
 }
 
-#ltxbnidmhm .katex-display {
+#agtvwpwfdf .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#ltxbnidmhm div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#agtvwpwfdf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
