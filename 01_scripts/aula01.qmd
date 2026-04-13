@@ -327,7 +327,7 @@ glimpse(dados)
 > -   Note também que existem o tipo da variável ao lado do nome.
 >     -   Variáveis do tipo `fct`: qualitativas;
 >     -   Variáveis do tipo `dbl:` quantitativas contínuas;
->     -   Variáveis do tipo `int:` são quantitativas contínuas.
+>     -   Variáveis do tipo `int:` são quantitativas discretas.
 
 **Atenção!** É muito importante inspecionar seus dados e entender bem o que significam. Uma das fontes básicas - além do próprio conjunto de dados - é o dicionário de dados. Lembra da aula do dia 06/04 que vimos os dicionários de algumas bases?
 
@@ -353,6 +353,8 @@ dados_2002 = dados |> filter(year == 2002)
 Separei o seguinte conjunto de dados que possui registros para o ano de 2002. O conjunto tem 142 observações.
 
 ```{r}
+dados_2002 = 
+  dados |> filter(year == 2002)
 
 glimpse(dados_2002)
 ```

@@ -481,7 +481,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <ul>
 <li>Variáveis do tipo <code>fct</code>: qualitativas;</li>
 <li>Variáveis do tipo <code>dbl:</code> quantitativas contínuas;</li>
-<li>Variáveis do tipo <code>int:</code> são quantitativas contínuas.</li>
+<li>Variáveis do tipo <code>int:</code> são quantitativas discretas.</li>
 </ul></li>
 </ul>
 </blockquote>
@@ -496,7 +496,10 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <p>Mas e seu eu tiver centenas, milhares ou milhões e registros? É humanamente impossível fazer na mão. Então usamos o software para resolver.</p>
 <p>Separei o seguinte conjunto de dados que possui registros para o ano de 2002. O conjunto tem 142 observações.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_2002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>dados_2002 <span class="ot">=</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  dados <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2002</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(dados_2002)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 142
 Columns: 6
@@ -1049,23 +1052,23 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
 <span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(media_expectativa)) <span class="sc">|&gt;</span> </span>
 <span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="bdcnmqflem" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#bdcnmqflem table {
+<div id="tpsjcnfryu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tpsjcnfryu table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#bdcnmqflem thead, #bdcnmqflem tbody, #bdcnmqflem tfoot, #bdcnmqflem tr, #bdcnmqflem td, #bdcnmqflem th {
+#tpsjcnfryu thead, #tpsjcnfryu tbody, #tpsjcnfryu tfoot, #tpsjcnfryu tr, #tpsjcnfryu td, #tpsjcnfryu th {
   border-style: none;
 }
 
-#bdcnmqflem p {
+#tpsjcnfryu p {
   margin: 0;
   padding: 0;
 }
 
-#bdcnmqflem .gt_table {
+#tpsjcnfryu .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1091,12 +1094,12 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-left-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_caption {
+#tpsjcnfryu .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#bdcnmqflem .gt_title {
+#tpsjcnfryu .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1108,7 +1111,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-width: 0;
 }
 
-#bdcnmqflem .gt_subtitle {
+#tpsjcnfryu .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1120,7 +1123,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-width: 0;
 }
 
-#bdcnmqflem .gt_heading {
+#tpsjcnfryu .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1132,13 +1135,13 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_bottom_border {
+#tpsjcnfryu .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_col_headings {
+#tpsjcnfryu .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1153,7 +1156,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_col_heading {
+#tpsjcnfryu .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1173,7 +1176,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#bdcnmqflem .gt_column_spanner_outer {
+#tpsjcnfryu .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1185,15 +1188,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 4px;
 }
 
-#bdcnmqflem .gt_column_spanner_outer:first-child {
+#tpsjcnfryu .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#bdcnmqflem .gt_column_spanner_outer:last-child {
+#tpsjcnfryu .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#bdcnmqflem .gt_column_spanner {
+#tpsjcnfryu .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1205,11 +1208,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   width: 100%;
 }
 
-#bdcnmqflem .gt_spanner_row {
+#tpsjcnfryu .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#bdcnmqflem .gt_group_heading {
+#tpsjcnfryu .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1235,7 +1238,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   text-align: left;
 }
 
-#bdcnmqflem .gt_empty_group_heading {
+#tpsjcnfryu .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1250,15 +1253,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: middle;
 }
 
-#bdcnmqflem .gt_from_md > :first-child {
+#tpsjcnfryu .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#bdcnmqflem .gt_from_md > :last-child {
+#tpsjcnfryu .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#bdcnmqflem .gt_row {
+#tpsjcnfryu .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1277,7 +1280,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   overflow-x: hidden;
 }
 
-#bdcnmqflem .gt_stub {
+#tpsjcnfryu .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1290,7 +1293,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#bdcnmqflem .gt_stub_row_group {
+#tpsjcnfryu .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1304,15 +1307,15 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   vertical-align: top;
 }
 
-#bdcnmqflem .gt_row_group_first td {
+#tpsjcnfryu .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#bdcnmqflem .gt_row_group_first th {
+#tpsjcnfryu .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#bdcnmqflem .gt_summary_row {
+#tpsjcnfryu .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1322,16 +1325,16 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#bdcnmqflem .gt_first_summary_row {
+#tpsjcnfryu .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_first_summary_row.thick {
+#tpsjcnfryu .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#bdcnmqflem .gt_last_summary_row {
+#tpsjcnfryu .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1341,7 +1344,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_grand_summary_row {
+#tpsjcnfryu .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1351,7 +1354,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#bdcnmqflem .gt_first_grand_summary_row {
+#tpsjcnfryu .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1361,7 +1364,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-top-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_last_grand_summary_row_top {
+#tpsjcnfryu .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1371,11 +1374,11 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_striped {
+#tpsjcnfryu .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#bdcnmqflem .gt_table_body {
+#tpsjcnfryu .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1384,7 +1387,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-bottom-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_footnotes {
+#tpsjcnfryu .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1398,7 +1401,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_footnote {
+#tpsjcnfryu .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1407,7 +1410,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#bdcnmqflem .gt_sourcenotes {
+#tpsjcnfryu .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1421,7 +1424,7 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   border-right-color: #D3D3D3;
 }
 
-#bdcnmqflem .gt_sourcenote {
+#tpsjcnfryu .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1429,72 +1432,72 @@ $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.11
   padding-right: 5px;
 }
 
-#bdcnmqflem .gt_left {
+#tpsjcnfryu .gt_left {
   text-align: left;
 }
 
-#bdcnmqflem .gt_center {
+#tpsjcnfryu .gt_center {
   text-align: center;
 }
 
-#bdcnmqflem .gt_right {
+#tpsjcnfryu .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#bdcnmqflem .gt_font_normal {
+#tpsjcnfryu .gt_font_normal {
   font-weight: normal;
 }
 
-#bdcnmqflem .gt_font_bold {
+#tpsjcnfryu .gt_font_bold {
   font-weight: bold;
 }
 
-#bdcnmqflem .gt_font_italic {
+#tpsjcnfryu .gt_font_italic {
   font-style: italic;
 }
 
-#bdcnmqflem .gt_super {
+#tpsjcnfryu .gt_super {
   font-size: 65%;
 }
 
-#bdcnmqflem .gt_footnote_marks {
+#tpsjcnfryu .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#bdcnmqflem .gt_asterisk {
+#tpsjcnfryu .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#bdcnmqflem .gt_indent_1 {
+#tpsjcnfryu .gt_indent_1 {
   text-indent: 5px;
 }
 
-#bdcnmqflem .gt_indent_2 {
+#tpsjcnfryu .gt_indent_2 {
   text-indent: 10px;
 }
 
-#bdcnmqflem .gt_indent_3 {
+#tpsjcnfryu .gt_indent_3 {
   text-indent: 15px;
 }
 
-#bdcnmqflem .gt_indent_4 {
+#tpsjcnfryu .gt_indent_4 {
   text-indent: 20px;
 }
 
-#bdcnmqflem .gt_indent_5 {
+#tpsjcnfryu .gt_indent_5 {
   text-indent: 25px;
 }
 
-#bdcnmqflem .katex-display {
+#tpsjcnfryu .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#bdcnmqflem div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tpsjcnfryu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
