@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-# Aula 2 — Tratamento de dados e visualização 
+## Aula 2 — Tratamento de dados e visualização 
 
 Este material foi desenvolvido pelo Prof. Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.
 
