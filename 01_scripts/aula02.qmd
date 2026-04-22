@@ -10,6 +10,64 @@ editor: visual
 
 Este material foi desenvolvido pelo Prof. Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.
 
+## 1. Preparando o ambiente
+
+Antes de tudo, vamos carregar os pacotes que vamos usar. Lembra que na aula passada instalamos todos eles? Se ainda não instalou, rode `install.packages("nome_do_pacote")` no Console.
+
+```{r}
+#| message: false 
+#| warning: false  
+
+library(ggplot2)   # visualização de dados 
+library(dplyr)     # manipulação de dados (já vimos na aula 1!) 
+library(gapminder) # base de dados 
+library(forcats)   # função para lidar com dados qualitativos  
+library(vroom)     # leitura rápida de dados
+
+# Carregando os dados (igual à aula passada!) 
+dados = gapminder::gapminder 
+
+glimpse(dados)
+```
+
+Deu certo? Ótimo. Vamos em frente.
+
+------------------------------------------------------------------------
+
+Antes de iniciarmos a aula de visualização de dados, preciso mostrar uma função muito importante do pacote `dplyr` que vocês vão usarmos com frequência nos projetos finais.
+
+## Antes de iniciar, vamos ver os joins
+
+Muitos de vocês receberam dados que gerei e possuem dados semelhantes a esse aqui.
+
+```{r}
+#| message: false
+#| warning: false
+
+sinasc = vroom("https://raw.githubusercontent.com/danielppagotto/ACD-UFG/refs/heads/main/02_dados/sinasc.csv")
+
+glimpse(sinasc)
+
+```
+
+Essa base é um recorte do Sistema de Nascidos Vivos (SINASC) do Datasus. Temos duas colunas: `ANO` e `CODMUNRES`. Temos mais de 301 mil linhas. Cada linha é o registro de uma nascimento. Usando o dplyr, conseguimos fazer uma contagem de quantos nascimentos tivemos por ano.
+
+```{r}
+
+nascimentos_ano = sinasc |> 
+                    group_by(ANO, CODMUNRES) |> 
+                    summarise(total = n())
+
+glimpse(nascimentos_ano)
+
+```
+
+Mas a pergunta que não quer calar: o que é `CODMUNRES`? No Brasil, o IBGE padronizou que cada município tem um código de identificação (é como se fosse o "CPF" do município).
+
+Tá, entendi. Mas se eu usar este código, meu usuário não vai entender o que significa este código. Tem como identificar associar esse código à identificação de um município? Tem sim!
+
+## 1. A lógica do ggplot2 — A Gramática dos Gráficos
+
 Na aula passada aprendemos a manipular dados com o `dplyr`: selecionar colunas, filtrar linhas, agrupar e resumir. Agora vamos dar um passo importante: **transformar esses dados em gráficos**.
 
 Afinal, de nada adianta calcular a média de PIB per capita de cada continente se não conseguimos comunicar isso de forma clara. É aí que entra a visualização de dados.
@@ -28,8 +86,6 @@ A ferramenta que vamos usar é o pacote `ggplot2`.
 
 ------------------------------------------------------------------------
 
-## 1. A lógica do ggplot2 — A Gramática dos Gráficos
-
 Antes de começar, precisamos entender que *ggplot2* funciona por meio de camadas.
 
 Você vai **empilhando camadas** no gráfico usando o operador `+`. Como se fosse uma receita — você vai adicionando ingredientes. Veja a seguir a lógica.
@@ -44,28 +100,6 @@ ggplot(dados, aes(x = ano, y = pib)) +   # camada base
 ```
 
 Agora vamos ver isso na prática!
-
-------------------------------------------------------------------------
-
-## 2. Preparando o ambiente
-
-Antes de tudo, vamos carregar os pacotes que vamos usar. Lembra que na aula passada instalamos todos eles? Se ainda não instalou, rode `install.packages("nome_do_pacote")` no Console.
-
-```{r}
-#| message: false
-#| warning: false
-
-library(ggplot2)   # visualização de dados
-library(dplyr)     # manipulação de dados (já vimos na aula 1!)
-library(gapminder) # base de dados
-library(forcats)   # função para lidar com dados qualitativos
-
-# Carregando os dados (igual à aula passada!)
-dados = gapminder::gapminder
-glimpse(dados)
-```
-
-Deu certo? Ótimo. Vamos em frente.
 
 ------------------------------------------------------------------------
 
@@ -158,7 +192,7 @@ brasil_chile |>
 
 ------------------------------------------------------------------------
 
-## 4. Histograma — Distribuição do PIB per capita 
+## 4. Histograma — Distribuição do PIB per capita
 
 Um histograma mostra como os dados estão **distribuídos**. Vamos ver a distribuição do PIB per capita dos países no ano de 2007.
 
@@ -489,7 +523,7 @@ Tire um tempo para interpretar estes resultados. O que eles indicam?
 
 ------------------------------------------------------------------------
 
-**Exercício 7:** Repita o gráfico de dispersão para o ano de **1952**. A relação entre PIB e expectativa de vida parece mais ou menos forte do que em 2007?
+**Exercício 5:** Repita o gráfico de dispersão para o ano de **1952**. A relação entre PIB e expectativa de vida parece mais ou menos forte do que em 2007?
 
 ------------------------------------------------------------------------
 
@@ -523,16 +557,14 @@ dados_2007 |>
 
 ------------------------------------------------------------------------
 
-## 12. Lista final
+## 10. Lista final
 
 Use o dataset `dados` (gapminder) para resolver os exercícios abaixo.
 
-**a)** Filtre os dados para o ano de 2007 e faça um gráfico de barras horizontal mostrando os **10 países com maior expectativa de vida**. Ordene as barras da maior para a menor.
+**a)** Filtre os dados para o ano de 2007 e faça um gráfico de barras horizontal mostrando os **10 países com maior expectativa de vida**. Ordene as barras da maior para a menor. Dica: você vai precisar usar uma função chamada `slice`. Pesquisa para fazer.
 
 **b)** Crie um gráfico de linha mostrando a evolução da **população total** por continente ao longo do tempo. Dica: use `group_by(continent, year)` e `summarise(pop_total = sum(pop))` antes de plotar.
 
 **c)** Faça um boxplot comparando a distribuição do **PIB per capita** entre os continentes em **1952** e em **2007**. Use `facet_wrap(~year)` para colocar os dois anos lado a lado.
 
 **d)** Escolha três países de continentes diferentes e faça um gráfico de linha comparando a evolução da expectativa de vida deles ao longo do tempo. Adicione `geom_point()` e personalize as cores com `scale_color_manual()`.
-
-**e) Desafio:** Calcule, para cada continente e cada ano disponível, a **média ponderada** da expectativa de vida pela população (ou seja, países mais populosos têm mais peso na média). A fórmula é `sum(lifeExp * pop) / sum(pop)`. Plote a evolução dessa média ponderada por continente usando `geom_line()`.
