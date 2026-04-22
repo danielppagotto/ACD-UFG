@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>02_codigo_aula2</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="aula02_files/libs/clipboard/clipboard.min.js"></script>
+<script src="aula02_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="aula02_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="aula02_files/libs/quarto-html/popper.min.js"></script>
+<script src="aula02_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="aula02_files/libs/quarto-html/anchor.min.js"></script>
+<link href="aula02_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="aula02_files/libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="aula02_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="aula02_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="aula02_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aula-2-visualização-de-dados-com-ggplot2" id="toc-aula-2-visualização-de-dados-com-ggplot2" class="nav-link active" data-scroll-target="#aula-2-visualização-de-dados-com-ggplot2">Aula 2 — Visualização de Dados com ggplot2</a>
+  <ul class="collapse">
+  <li><a href="#a-lógica-do-ggplot2-a-gramática-dos-gráficos" id="toc-a-lógica-do-ggplot2-a-gramática-dos-gráficos" class="nav-link" data-scroll-target="#a-lógica-do-ggplot2-a-gramática-dos-gráficos">1. A lógica do ggplot2 — A Gramática dos Gráficos</a></li>
+  <li><a href="#preparando-o-ambiente" id="toc-preparando-o-ambiente" class="nav-link" data-scroll-target="#preparando-o-ambiente">2. Preparando o ambiente</a></li>
+  <li><a href="#gráfico-de-linha-evolução-do-pib-per-capita" id="toc-gráfico-de-linha-evolução-do-pib-per-capita" class="nav-link" data-scroll-target="#gráfico-de-linha-evolução-do-pib-per-capita">3. Gráfico de Linha — Evolução do PIB per capita</a></li>
+  <li><a href="#histograma-distribuição-da-expectativa-de-vida" id="toc-histograma-distribuição-da-expectativa-de-vida" class="nav-link" data-scroll-target="#histograma-distribuição-da-expectativa-de-vida">4. Histograma — Distribuição da expectativa de vida</a></li>
+  <li><a href="#boxplot-comparando-a-distribuição-por-continente" id="toc-boxplot-comparando-a-distribuição-por-continente" class="nav-link" data-scroll-target="#boxplot-comparando-a-distribuição-por-continente">5. Boxplot — Comparando a distribuição por continente</a></li>
+  <li><a href="#histograma-com-facet_wrap-um-painel-por-continente" id="toc-histograma-com-facet_wrap-um-painel-por-continente" class="nav-link" data-scroll-target="#histograma-com-facet_wrap-um-painel-por-continente">6. Histograma com facet_wrap() — Um painel por continente</a></li>
+  <li><a href="#gráfico-de-barras-pib-per-capita-médio-por-continente" id="toc-gráfico-de-barras-pib-per-capita-médio-por-continente" class="nav-link" data-scroll-target="#gráfico-de-barras-pib-per-capita-médio-por-continente">7. Gráfico de Barras — PIB per capita médio por continente</a></li>
+  <li><a href="#gráfico-de-barras-horizontal-população-por-continente" id="toc-gráfico-de-barras-horizontal-população-por-continente" class="nav-link" data-scroll-target="#gráfico-de-barras-horizontal-população-por-continente">8. Gráfico de Barras Horizontal — População por continente</a></li>
+  <li><a href="#gráfico-de-pizza-participação-da-população-por-continente" id="toc-gráfico-de-pizza-participação-da-população-por-continente" class="nav-link" data-scroll-target="#gráfico-de-pizza-participação-da-população-por-continente">9. Gráfico de Pizza — Participação da população por continente</a></li>
+  <li><a href="#dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida" id="toc-dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida" class="nav-link" data-scroll-target="#dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida">10. Dispersão — Relação entre PIB per capita e Expectativa de vida</a></li>
+  <li><a href="#adicionando-uma-linha-de-tendência" id="toc-adicionando-uma-linha-de-tendência" class="nav-link" data-scroll-target="#adicionando-uma-linha-de-tendência">11. Adicionando uma linha de tendência</a></li>
+  <li><a href="#evolução-temporal-de-múltiplos-países-geom_line-com-destaque" id="toc-evolução-temporal-de-múltiplos-países-geom_line-com-destaque" class="nav-link" data-scroll-target="#evolução-temporal-de-múltiplos-países-geom_line-com-destaque">12. Evolução temporal de múltiplos países — geom_line() com destaque</a></li>
+  <li><a href="#lista-final" id="toc-lista-final" class="nav-link" data-scroll-target="#lista-final">13. Lista final</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">02_codigo_aula2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="aula-2-visualização-de-dados-com-ggplot2" class="level1">
+<h1>Aula 2 — Visualização de Dados com ggplot2</h1>
+<p>Este material foi desenvolvido pelo Prof.&nbsp;Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.</p>
+<p>Na aula passada aprendemos a manipular dados com o <code>dplyr</code>: selecionar colunas, filtrar linhas, agrupar e resumir. Agora vamos dar um passo importante: <strong>transformar esses dados em gráficos</strong>.</p>
+<p>Afinal, de nada adianta calcular a média de PIB per capita de cada continente se não conseguimos comunicar isso de forma clara. É aí que entra a visualização de dados.</p>
+<p>A ferramenta que vamos usar é o pacote <code>ggplot2</code>.</p>
+<hr>
+<section id="a-lógica-do-ggplot2-a-gramática-dos-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="a-lógica-do-ggplot2-a-gramática-dos-gráficos">1. A lógica do ggplot2 — A Gramática dos Gráficos</h2>
+<p>Antes de codar, precisamos entender <em>como o ggplot2 pensa</em>.</p>
+<p>O <code>ggplot2</code> é baseado em um conceito chamado <strong>Gramática dos Gráficos</strong> (<em>Grammar of Graphics</em>). A ideia é que todo gráfico pode ser descrito como uma combinação de camadas:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Camada</th>
+<th>O que faz</th>
+<th>Exemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ggplot()</code></td>
+<td>Define os dados e os eixos</td>
+<td>Qual dataset? Qual coluna no eixo X? No Y?</td>
+</tr>
+<tr class="even">
+<td><code>geom_*()</code></td>
+<td>Define o tipo de gráfico</td>
+<td><code>geom_line()</code>, <code>geom_bar()</code>, <code>geom_histogram()</code></td>
+</tr>
+<tr class="odd">
+<td><code>aes()</code></td>
+<td>Mapeia variáveis a propriedades visuais</td>
+<td>Cor, tamanho, preenchimento</td>
+</tr>
+<tr class="even">
+<td><code>labs()</code></td>
+<td>Títulos e rótulos dos eixos</td>
+<td>Título, subtítulo, fonte</td>
+</tr>
+<tr class="odd">
+<td><code>theme_*()</code></td>
+<td>Estilo visual do gráfico</td>
+<td>Fundo, grade, fonte</td>
+</tr>
+</tbody>
+</table>
+<p>Pense assim: você vai <strong>empilhando camadas</strong> no gráfico usando o operador <code>+</code>. Como se fosse uma receita — você vai adicionando ingredientes.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> ano, <span class="at">y =</span> pib)) <span class="sc">+</span>   <span class="co"># camada base</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span>                           <span class="co"># tipo de gráfico</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PIB ao longo do tempo"</span>) <span class="sc">+</span> <span class="co"># rótulos</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()                         <span class="co"># estilo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Agora vamos ver isso na prática!</p>
+<hr>
+</section>
+<section id="preparando-o-ambiente" class="level2">
+<h2 class="anchored" data-anchor-id="preparando-o-ambiente">2. Preparando o ambiente</h2>
+<p>Antes de tudo, vamos carregar os pacotes que vamos usar. Lembra que na aula passada instalamos todos eles? Se ainda não instalou, rode <code>install.packages("nome_do_pacote")</code> no Console.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)   <span class="co"># visualização de dados</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)     <span class="co"># manipulação de dados (já vimos na aula 1!)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gapminder) <span class="co"># base de dados</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando os dados (igual à aula passada!)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">=</span> gapminder<span class="sc">::</span>gapminder</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Deu certo? Ótimo. Vamos em frente.</p>
+<hr>
+</section>
+<section id="gráfico-de-linha-evolução-do-pib-per-capita" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-de-linha-evolução-do-pib-per-capita">3. Gráfico de Linha — Evolução do PIB per capita</h2>
+<p>Nosso primeiro gráfico vai mostrar como o PIB per capita do Brasil e do Chile evoluiu ao longo do tempo.</p>
+<p>Primeiro, usando o <code>dplyr</code> (que você já conhece!), vamos filtrar apenas os dois países:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrando Brasil e Chile (relembrando o filter() da aula 1!)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>brasil_chile <span class="ot">=</span> dados <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Brazil"</span>, <span class="st">"Chile"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>O operador <code>%in%</code></strong> é muito útil! Ele verifica se um valor está dentro de uma lista. É como perguntar: “o país está <em>dentro de</em> {Brasil, Chile}?”</p>
+</blockquote>
+<p>Agora vamos construir o gráfico em camadas:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>brasil_chile <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> gdpPercap, <span class="at">color =</span> country)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Evolução do PIB per capita"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Brasil e Chile | 1952–2007"</span>,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Ano"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"PIB per capita (US$)"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"País"</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>O que estamos fazendo aqui?</strong></p>
+<ul>
+<li><code>aes(x = year, y = gdpPercap, color = country)</code>: o eixo X é o ano, o eixo Y é o PIB per capita, e a <strong>cor</strong> de cada linha representa o país;</li>
+<li><code>geom_line()</code>: desenha as linhas;</li>
+<li><code>geom_point()</code>: adiciona os pontinhos em cada observação;</li>
+<li><code>labs()</code>: define os títulos e rótulos;</li>
+<li><code>theme_minimal()</code>: aplica um estilo limpo e elegante.</li>
+</ul>
+<p><strong>O que você observa neste gráfico?</strong> O Chile apresenta uma trajetória de crescimento mais acelerada do que o Brasil, especialmente a partir dos anos 1990?</p>
+<hr>
+<p><strong>Exercício 1:</strong> Faça o mesmo gráfico, mas desta vez inclua também a <strong>Argentina</strong> e a <strong>Colômbia</strong>. O que muda na interpretação?</p>
+<hr>
+</section>
+<section id="histograma-distribuição-da-expectativa-de-vida" class="level2">
+<h2 class="anchored" data-anchor-id="histograma-distribuição-da-expectativa-de-vida">4. Histograma — Distribuição da expectativa de vida</h2>
+<p>Um histograma mostra como os dados estão <strong>distribuídos</strong>. Vamos ver a distribuição da expectativa de vida dos países no ano de 2007.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="ot">=</span> dados <span class="sc">|&gt;</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">20</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribuição da Expectativa de Vida em 2007"</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Número de países"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>O parâmetro <code>bins</code></strong> define quantas barras o histograma vai ter. Teste mudar esse valor — use <code>bins = 10</code> e depois <code>bins = 30</code> — e observe como o gráfico muda.</p>
+</blockquote>
+<p>O parâmetro <code>fill</code> define a cor de preenchimento das barras, e <code>color</code> define a cor da borda. Experimente trocar as cores!</p>
+<hr>
+<p><strong>Exercício 2:</strong> Faça um histograma para o ano de <strong>1952</strong> e compare visualmente com o de 2007. A distribuição ficou mais espalhada ou mais concentrada? O que isso indica?</p>
+<hr>
+</section>
+<section id="boxplot-comparando-a-distribuição-por-continente" class="level2">
+<h2 class="anchored" data-anchor-id="boxplot-comparando-a-distribuição-por-continente">5. Boxplot — Comparando a distribuição por continente</h2>
+<p>O boxplot é excelente para comparar a <strong>distribuição de uma variável entre grupos</strong>. Lembra que na aula anterior discutimos mediana, quartis e desvio-padrão? O boxplot mostra tudo isso visualmente!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Expectativa de Vida por Continente em 2007"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="co"># tira a legenda (já está no eixo X)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Lendo o boxplot:</strong></p>
+<ul>
+<li>A <strong>linha do meio</strong> da caixa é a <strong>mediana</strong> (2º quartil);</li>
+<li>A <strong>parte inferior</strong> da caixa é o <strong>1º quartil</strong> (25%);</li>
+<li>A <strong>parte superior</strong> da caixa é o <strong>3º quartil</strong> (75%);</li>
+<li>Os <strong>pontos fora dos bigodes</strong> são outliers — países com valores atípicos.</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Os parâmetros <code>fill</code> e <code>color</code></strong> mapeiam variáveis a propriedades visuais. <code>fill</code> preenche o interior da forma. <code>color</code> define a borda. Quando colocados dentro do <code>aes()</code>, eles são associados a uma variável dos dados. Quando colocados fora (como fizemos no histograma), são cores fixas.</p>
+</blockquote>
+<hr>
+<p><strong>Exercício 3:</strong> Repita o boxplot, mas agora para o <strong>PIB per capita</strong> (<code>gdpPercap</code>). Qual continente apresenta maior variação interna?</p>
+<hr>
+</section>
+<section id="histograma-com-facet_wrap-um-painel-por-continente" class="level2">
+<h2 class="anchored" data-anchor-id="histograma-com-facet_wrap-um-painel-por-continente">6. Histograma com facet_wrap() — Um painel por continente</h2>
+<p>Às vezes queremos comparar a distribuição de uma variável entre vários grupos ao mesmo tempo. O <code>facet_wrap()</code> divide o gráfico em <strong>painéis</strong>, um para cada grupo. É muito poderoso!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> lifeExp, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">12</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>continent, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribuição da Expectativa de Vida por Continente em 2007"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Número de países"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>O argumento <code>scales = "free_y"</code></strong> permite que cada painel tenha sua própria escala no eixo Y. Isso é útil quando os continentes têm números de países bem diferentes (a África tem muito mais países do que a Oceania, por exemplo). Teste remover este argumento e veja o que acontece.</p>
+</blockquote>
+<hr>
+<p><strong>Exercício 4:</strong> Use <code>facet_wrap(~continent)</code> para fazer um gráfico de linha da <strong>evolução da expectativa de vida</strong> ao longo do tempo, com um painel por continente. Dica: use todos os dados (<code>dados</code>), não apenas <code>dados_2007</code>.</p>
+<hr>
+</section>
+<section id="gráfico-de-barras-pib-per-capita-médio-por-continente" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-de-barras-pib-per-capita-médio-por-continente">7. Gráfico de Barras — PIB per capita médio por continente</h2>
+<p>Vamos combinar o <code>dplyr</code> com o <code>ggplot2</code> para criar um gráfico de barras. Primeiro calculamos a média com <code>summarise()</code>, e depois plotamos.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">media_pib =</span> <span class="fu">mean</span>(gdpPercap)) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> media_pib, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"PIB per capita médio por Continente em 2007"</span>,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"PIB per capita médio (US$)"</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong><code>geom_col()</code> vs <code>geom_bar()</code>:</strong> O <code>geom_col()</code> usa uma coluna do seu dataframe como altura das barras. O <code>geom_bar()</code> conta automaticamente quantas linhas existem por grupo. Para gráficos de barras com valores já calculados, use sempre <code>geom_col()</code>.</p>
+</blockquote>
+<hr>
+<p><strong>Exercício 5:</strong> Faça o mesmo gráfico, mas desta vez compare os anos de <strong>1952 e 2007</strong> lado a lado. Use <code>filter(year == 1952 | year == 2007)</code>, agrupe por <code>continent</code> e <code>year</code>, e adicione <code>fill = factor(year)</code> no <code>aes()</code>. O que mudou?</p>
+<hr>
+</section>
+<section id="gráfico-de-barras-horizontal-população-por-continente" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-de-barras-horizontal-população-por-continente">8. Gráfico de Barras Horizontal — População por continente</h2>
+<p>Às vezes os rótulos do eixo X ficam sobrepostos ou difíceis de ler. Uma boa solução é <strong>virar o gráfico</strong> usando <code>coord_flip()</code>.</p>
+<p>Vamos ver a <strong>população total</strong> por continente em 2007:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop_total =</span> <span class="fu">sum</span>(pop)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(pop_total) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">continent =</span> <span class="fu">factor</span>(continent, <span class="at">levels =</span> continent)) <span class="sc">|&gt;</span> <span class="co"># mantém a ordem do arrange</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> pop_total <span class="sc">/</span> <span class="fl">1e9</span>, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"População Total por Continente em 2007"</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"População (bilhões)"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Observações importantes:</strong></p>
+<ul>
+<li><code>sum(pop)</code> soma a população de todos os países do continente;</li>
+<li><code>pop / 1e9</code> converte o número para bilhões (fica mais legível do que 1.000.000.000);</li>
+<li><code>arrange()</code> + <code>mutate(continent = factor(...))</code> garante que as barras fiquem ordenadas de menor para maior;</li>
+<li><code>coord_flip()</code> vira os eixos — o que era X vira Y e vice-versa;</li>
+<li><code>x = NULL</code> remove o rótulo do eixo X (que ficou vazio após o flip).</li>
+</ul>
+<hr>
+<p><strong>Exercício 6:</strong> Faça o mesmo gráfico, mas desta vez mostrando os <strong>10 países mais populosos</strong> em 2007. Use <code>slice_max(pop, n = 10)</code> após o <code>filter()</code>.</p>
+<hr>
+</section>
+<section id="gráfico-de-pizza-participação-da-população-por-continente" class="level2">
+<h2 class="anchored" data-anchor-id="gráfico-de-pizza-participação-da-população-por-continente">9. Gráfico de Pizza — Participação da população por continente</h2>
+<p>O gráfico de pizza (pie chart) mostra a <strong>participação proporcional</strong> de cada categoria no total. No <code>ggplot2</code>, ele é construído a partir de um gráfico de barras + <code>coord_polar()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2007</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">pop_total =</span> <span class="fu">sum</span>(pop)) <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">proporcao =</span> pop_total <span class="sc">/</span> <span class="fu">sum</span>(pop_total),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">rotulo =</span> <span class="fu">paste0</span>(continent, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>, <span class="fu">round</span>(proporcao <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> pop_total, <span class="at">fill =</span> continent)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Participação na População Mundial por Continente em 2007"</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="co"># tema sem eixos — ideal para pizza</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Uma nota honesta sobre gráficos de pizza:</strong> Eles são visualmente intuitivos, mas tendem a ser menos precisos do que barras quando as fatias são parecidas em tamanho. Use-os quando há uma fatia claramente dominante (como a Ásia neste caso) ou quando você quer enfatizar a composição do todo.</p>
+</blockquote>
+<hr>
+</section>
+<section id="dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida" class="level2">
+<h2 class="anchored" data-anchor-id="dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida">10. Dispersão — Relação entre PIB per capita e Expectativa de vida</h2>
+<p>O gráfico de dispersão (scatter plot) é ideal para explorar a <strong>relação entre duas variáveis numéricas</strong>. Lembra que na aula 1 calculamos a correlação entre expectativa de vida e PIB per capita? Agora vamos visualizar!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> continent, <span class="at">size =</span> pop)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"PIB per capita vs. Expectativa de Vida em 2007"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PIB per capita (escala log, US$)"</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"População"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Muito está acontecendo aqui!</strong></p>
+<ul>
+<li><code>color = continent</code>: cada continente ganha uma cor;</li>
+<li><code>size = pop</code>: o <strong>tamanho</strong> de cada ponto representa a população do país;</li>
+<li><code>alpha = 0.7</code>: transparência dos pontos — evita que pontos sobrepostos se “percam”;</li>
+<li><code>scale_x_log10()</code>: transforma o eixo X em escala logarítmica. Por quê? Porque o PIB per capita tem uma distribuição muito assimétrica — alguns países são muito ricos e esticariam o gráfico. A escala log comprime essa assimetria e revela melhor a relação.</li>
+</ul>
+<p>Este gráfico é inspirado nos famosos <a href="https://www.gapminder.org/tools/">gráficos de bolhas do Hans Rosling</a>, fundador do instituto Gapminder!</p>
+<hr>
+<p><strong>Exercício 7:</strong> Repita o gráfico de dispersão para o ano de <strong>1952</strong>. A relação entre PIB e expectativa de vida parece mais ou menos forte do que em 2007?</p>
+<hr>
+</section>
+<section id="adicionando-uma-linha-de-tendência" class="level2">
+<h2 class="anchored" data-anchor-id="adicionando-uma-linha-de-tendência">11. Adicionando uma linha de tendência</h2>
+<p>Podemos adicionar uma linha de tendência ao gráfico de dispersão com <code>geom_smooth()</code>. Ela ajuda a identificar visualmente a direção da relação entre as variáveis.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dados_2007 <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gdpPercap, <span class="at">y =</span> lifeExp)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> continent, <span class="at">size =</span> pop), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"PIB per capita vs. Expectativa de Vida em 2007"</span>,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Com linha de tendência (regressão linear)"</span>,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"PIB per capita (escala log, US$)"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Continente"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> <span class="st">"População"</span>,</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong><code>method = "lm"</code></strong> significa <em>linear model</em>, ou seja, uma reta de regressão. O argumento <code>se = TRUE</code> mostra a faixa de incerteza ao redor da linha. Você pode usar <code>method = "loess"</code> para uma curva mais flexível que se adapta aos dados.</p>
+</blockquote>
+<hr>
+</section>
+<section id="evolução-temporal-de-múltiplos-países-geom_line-com-destaque" class="level2">
+<h2 class="anchored" data-anchor-id="evolução-temporal-de-múltiplos-países-geom_line-com-destaque">12. Evolução temporal de múltiplos países — geom_line() com destaque</h2>
+<p>Vamos ver a evolução da expectativa de vida em todos os países da América do Sul, destacando o Brasil.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>america_sul <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Brazil"</span>, <span class="st">"Argentina"</span>, <span class="st">"Chile"</span>, <span class="st">"Colombia"</span>,</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Peru"</span>, <span class="st">"Venezuela"</span>, <span class="st">"Bolivia"</span>, <span class="st">"Ecuador"</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Paraguay"</span>, <span class="st">"Uruguay"</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>dados <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(country <span class="sc">%in%</span> america_sul) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">destaque =</span> <span class="fu">if_else</span>(country <span class="sc">==</span> <span class="st">"Brazil"</span>, <span class="st">"Brasil"</span>, <span class="st">"Outros"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lifeExp,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">group =</span> country,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> destaque,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">linewidth =</span> destaque)) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Brasil"</span> <span class="ot">=</span> <span class="st">"#009C3B"</span>, <span class="st">"Outros"</span> <span class="ot">=</span> <span class="st">"grey70"</span>)) <span class="sc">+</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_linewidth_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Brasil"</span> <span class="ot">=</span> <span class="fl">1.5</span>, <span class="st">"Outros"</span> <span class="ot">=</span> <span class="fl">0.7</span>)) <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Evolução da Expectativa de Vida — América do Sul"</span>,</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Brasil em destaque"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Ano"</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Expectativa de vida (anos)"</span>,</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="cn">NULL</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">linewidth =</span> <span class="cn">NULL</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Fonte: Gapminder"</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="aula02_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Técnicas novas aqui:</strong></p>
+<ul>
+<li><code>group = country</code> garante que cada linha corresponda a um país;</li>
+<li><code>scale_color_manual()</code> permite definir <strong>cores específicas</strong> para cada categoria manualmente;</li>
+<li><code>scale_linewidth_manual()</code> controla a espessura de cada linha;</li>
+<li><code>mutate(destaque = if_else(...))</code> é o <code>dplyr</code> trabalhando junto com o <code>ggplot2</code> — criamos uma variável auxiliar para separar o Brasil dos demais países.</li>
+</ul>
+<hr>
+</section>
+<section id="lista-final" class="level2">
+<h2 class="anchored" data-anchor-id="lista-final">13. Lista final</h2>
+<p>Use o dataset <code>dados</code> (gapminder) para resolver os exercícios abaixo.</p>
+<p><strong>a)</strong> Filtre os dados para o ano de 2007 e faça um gráfico de barras horizontal mostrando os <strong>10 países com maior expectativa de vida</strong>. Ordene as barras da maior para a menor.</p>
+<p><strong>b)</strong> Crie um gráfico de linha mostrando a evolução da <strong>população total</strong> por continente ao longo do tempo. Dica: use <code>group_by(continent, year)</code> e <code>summarise(pop_total = sum(pop))</code> antes de plotar.</p>
+<p><strong>c)</strong> Faça um boxplot comparando a distribuição do <strong>PIB per capita</strong> entre os continentes em <strong>1952</strong> e em <strong>2007</strong>. Use <code>facet_wrap(~year)</code> para colocar os dois anos lado a lado.</p>
+<p><strong>d)</strong> Escolha três países de continentes diferentes e faça um gráfico de linha comparando a evolução da expectativa de vida deles ao longo do tempo. Adicione <code>geom_point()</code> e personalize as cores com <code>scale_color_manual()</code>.</p>
+<p><strong>e) Desafio:</strong> Calcule, para cada continente e cada ano disponível, a <strong>média ponderada</strong> da expectativa de vida pela população (ou seja, países mais populosos têm mais peso na média). A fórmula é <code>sum(lifeExp * pop) / sum(pop)</code>. Plote a evolução dessa média ponderada por continente usando <code>geom_line()</code>.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
