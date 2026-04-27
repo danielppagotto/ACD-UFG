@@ -81,8 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aula-2-tratamento-de-dados-e-visualização" id="toc-aula-2-tratamento-de-dados-e-visualização" class="nav-link active" data-scroll-target="#aula-2-tratamento-de-dados-e-visualização">Aula 2 — Tratamento de dados e visualização</a>
-  <ul class="collapse">
+  <li><a href="#aula-2-tratamento-de-dados-e-visualização" id="toc-aula-2-tratamento-de-dados-e-visualização" class="nav-link active" data-scroll-target="#aula-2-tratamento-de-dados-e-visualização">Aula 2 — Tratamento de dados e visualização</a></li>
   <li><a href="#preparando-o-ambiente" id="toc-preparando-o-ambiente" class="nav-link" data-scroll-target="#preparando-o-ambiente">1. Preparando o ambiente</a></li>
   <li><a href="#antes-de-iniciar-vamos-ver-os-joins" id="toc-antes-de-iniciar-vamos-ver-os-joins" class="nav-link" data-scroll-target="#antes-de-iniciar-vamos-ver-os-joins">Antes de iniciar, vamos ver os joins</a></li>
   <li><a href="#a-lógica-do-ggplot2-a-gramática-dos-gráficos" id="toc-a-lógica-do-ggplot2-a-gramática-dos-gráficos" class="nav-link" data-scroll-target="#a-lógica-do-ggplot2-a-gramática-dos-gráficos">2. A lógica do ggplot2 — A Gramática dos Gráficos</a></li>
@@ -94,7 +93,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#gráfico-de-barras-horizontal-população-por-continente" id="toc-gráfico-de-barras-horizontal-população-por-continente" class="nav-link" data-scroll-target="#gráfico-de-barras-horizontal-população-por-continente">2.6. Gráfico de Barras Horizontal — População por continente</a></li>
   <li><a href="#dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida" id="toc-dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida" class="nav-link" data-scroll-target="#dispersão-relação-entre-pib-per-capita-e-expectativa-de-vida">2.6. Dispersão — Relação entre PIB per capita e Expectativa de vida</a></li>
   <li><a href="#lista-final" id="toc-lista-final" class="nav-link" data-scroll-target="#lista-final">3. Lista final</a></li>
-  </ul></li>
   </ul>
 </nav>
 </div>
@@ -119,9 +117,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="aula-2-tratamento-de-dados-e-visualização" class="level1">
-<h1>Aula 2 — Tratamento de dados e visualização</h1>
+<section id="aula-2-tratamento-de-dados-e-visualização" class="level2">
+<h2 class="anchored" data-anchor-id="aula-2-tratamento-de-dados-e-visualização">Aula 2 — Tratamento de dados e visualização</h2>
 <p>Este material foi desenvolvido pelo Prof.&nbsp;Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.</p>
+</section>
 <section id="preparando-o-ambiente" class="level2">
 <h2 class="anchored" data-anchor-id="preparando-o-ambiente">1. Preparando o ambiente</h2>
 <p>Antes de tudo, vamos carregar os pacotes que vamos usar para a aula de hoje. Lembra que na aula passada instalamos alguns deles? Para aqueles que ainda não instalou, rode <code>install.packages("nome_do_pacote")</code> no Console.</p>
@@ -294,7 +293,7 @@ $ municipio_pad &lt;chr&gt; "BRASILEIA", "CHAVES", "CONCORDIA DO PARA", "SANTA L
 <hr>
 <p>Antes de começar, precisamos entender que <em>ggplot2</em> funciona por meio de camadas.</p>
 <p>Você vai <strong>empilhando camadas</strong> no gráfico usando o operador <code>+</code>. Como se fosse uma receita — você vai adicionando ingredientes. Veja a seguir a lógica.</p>
-<p>Não se preocupe que vamos daqui a pouco aprofundar.</p>
+<p>Não se preocupe que vamos daqui a pouco aprofundar. <strong>Não precisa rodar este código abaixo!</strong></p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados, <span class="fu">aes</span>(<span class="at">x =</span> ano, <span class="at">y =</span> pib)) <span class="sc">+</span>   <span class="co"># camada base</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span>                           <span class="co"># tipo de gráfico</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"PIB ao longo do tempo"</span>) <span class="sc">+</span> <span class="co"># rótulos</span></span>
@@ -825,7 +824,6 @@ $ municipio_pad &lt;chr&gt; "BRASILEIA", "CHAVES", "CONCORDIA DO PARA", "SANTA L
 <p><strong>f)</strong> Crie um gráfico de linha mostrando a evolução da <strong>população total</strong> por continente ao longo do tempo. Dica: use <code>group_by(continent, year)</code> e <code>summarise(pop_total = sum(pop))</code> antes de plotar.</p>
 <p><strong>g)</strong> Faça um boxplot comparando a distribuição do <strong>PIB per capita</strong> entre os continentes em <strong>1952</strong> e em <strong>2007</strong>. Use <code>facet_wrap(~year)</code> para colocar os dois anos lado a lado.</p>
 <p><strong>h)</strong> Escolha três países de continentes diferentes e faça um gráfico de linha comparando a evolução da expectativa de vida deles ao longo do tempo. Adicione <code>geom_point()</code> e personalize as cores com <code>scale_color_manual()</code>.</p>
-</section>
 </section>
 
 </main>

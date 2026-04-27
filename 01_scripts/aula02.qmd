@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-## Aula 2 — Tratamento de dados e visualização 
+## Aula 2 — Tratamento de dados e visualização
 
 Este material foi desenvolvido pelo Prof. Daniel Pagotto para a disciplina de Análise e Comunicação de Dados.
 
@@ -96,7 +96,7 @@ nascimentos_ano |>
 
 ```
 
->  Existem outras formas de `join`, mas não vamos adentrar por hora.
+> Existem outras formas de `join`, mas não vamos adentrar por hora.
 >
 > As variáveis usadas para juntar devem ser iguais, inclusive em tipo. Veja que ambas são numéricas (`dbl`).
 
@@ -140,7 +140,7 @@ Antes de começar, precisamos entender que *ggplot2* funciona por meio de camada
 
 Você vai **empilhando camadas** no gráfico usando o operador `+`. Como se fosse uma receita — você vai adicionando ingredientes. Veja a seguir a lógica.
 
-Não se preocupe que vamos daqui a pouco aprofundar.
+Não se preocupe que vamos daqui a pouco aprofundar. **Não precisa rodar este código abaixo!**
 
 ``` r
 ggplot(dados, aes(x = ano, y = pib)) +   # camada base
